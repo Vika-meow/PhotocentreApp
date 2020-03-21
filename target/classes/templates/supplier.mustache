@@ -1,0 +1,18 @@
+<html>
+    <body>
+    <a href="/insert">Back to all inserts</a>
+    <div>
+        <form method="post">
+            <input type="text" name="organization" placeholder="Supplier Name" />
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+    <div>Supplier List</div>
+    {{#suppliers}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{organization}}</span>
+        </div>
+    {{/suppliers}}
+    </body>
+</html>
