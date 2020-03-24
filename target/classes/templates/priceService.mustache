@@ -1,0 +1,21 @@
+<html>
+
+<body>
+<a href="/price">Back</a>
+<div></div>
+<div>
+    <form method="post" action="/price/service">
+        <input type="text" name="serviceType" placeholder="Тип заказа" />
+        <input type="text" name="price" placeholder="Цена">
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Прайс-лист на заказы</div>
+{{#service}}
+<div>
+    <span>{{serviceType}}</span>
+    <span>{{price}}</span>
+</div>
+{{/service}}
+</body>
+</html>
