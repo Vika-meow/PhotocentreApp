@@ -18,7 +18,7 @@ public class SupplierController {
     @Autowired
     private SupplierRepo supplierRepo;
 
-   @GetMapping("/supplier")
+   @GetMapping("/insert/supplier")
     public String main(Map<String, Object> model) {
         Iterable<Supplier> it = supplierRepo.findAll();
 
@@ -27,7 +27,7 @@ public class SupplierController {
         return "supplier";
     }
 
-    @PostMapping("/supplier")
+    @PostMapping("/insert/supplier")
     public String add(@RequestParam String organization, Map<String, Object> model) {
         Supplier supplier = new Supplier(organization);
 
