@@ -9,7 +9,13 @@ public class Organization {
     @Id
     private String address;
 
-    private String branchOffice;
+    public Organization(){
+
+    }
+
+    public Organization(String address){
+        this.address = address;
+    }
 
     public String getAddress() {
         return address;
@@ -17,13 +23,5 @@ public class Organization {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getBranchOffice() {
-        return branchOffice;
-    }
-
-    public void setBranchOffice(String branchOffice) {
-        this.branchOffice = branchOffice;
     }
 }

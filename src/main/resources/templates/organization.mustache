@@ -1,0 +1,19 @@
+<html>
+
+<body>
+<a href="/insert">Back</a>
+<div></div>
+<div>
+    <form method="post" action="/insert/organization">
+        <input type="text" name="address" placeholder="Адрес" />
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Адреса филиалов</div>
+{{#organizations}}
+<div>
+    <span>{{address}}</span>
+</div>
+{{/organizations}}
+</body>
+</html>
