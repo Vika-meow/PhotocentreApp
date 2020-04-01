@@ -4,4 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import ru.nsu.fit.DataBase.Domain.Organization;
 
 public interface OrganizationRepo extends CrudRepository<Organization, String> {
+    public Organization findByAddress(String id);
 }

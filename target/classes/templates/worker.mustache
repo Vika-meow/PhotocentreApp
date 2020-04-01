@@ -6,8 +6,9 @@
 <div>
     <form method="post" action="/insert/worker">
         <select name ="address" placeholder="Адрес">
+        <option value="-1">Адрес работы</option>
         {{#organization}}
-        <option value={{address}}>{{address}}</option>
+        <option value="{{address}}">{{address}}</option>
         {{/organization}}
         </select>
         <input type="text" name="name" placeholder="Имя">
@@ -20,6 +21,7 @@
 <div>
     <b>{{name}}</b>
     <span>{{profile}}</span>
+    <span>{{organizationName}}</span>
 </div>
 {{/workers}}
 </body>

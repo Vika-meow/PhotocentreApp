@@ -10,7 +10,7 @@ public class Worker {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(columnDefinition = "address")
+    @JoinColumn(name = "address")
     private Organization address;
 
     public Worker() {
@@ -21,6 +21,9 @@ public class Worker {
         this.profile = profile;
         this.address = address;
     }
+
+    public String getOrganizationName(){ return address != null
+            ? address.getAddress() : "none"; }
 
     public String getProfile() {
         return profile;

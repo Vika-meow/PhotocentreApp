@@ -12,6 +12,7 @@ import ru.nsu.fit.DataBase.Repos.WorkerRepo;
 
 import javax.persistence.ManyToOne;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class WorkerController {
@@ -30,9 +31,12 @@ public class WorkerController {
     }
 
     @PostMapping("/insert/worker")
-    public String add(@RequestParam Organization address, @RequestParam String name,
+    public String add(@RequestParam String address, @RequestParam String name,
             @RequestParam String profile, Map<String, Object> model){
-        Worker worker = new Worker(name, profile, address);
+        //System.out.println(address);
+
+        Organization organization = organizationRepo.findByAddress(address);
+        Worker worker = new Worker(name, profile, organization);
         workerRepo.save(worker);
 
         putListofAll(model);
