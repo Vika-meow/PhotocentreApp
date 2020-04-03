@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class GoodsPrice {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id;
+    private int goodsId;
 
     private String nameOfGoods;
     private String company;
@@ -35,12 +35,12 @@ public class GoodsPrice {
         this.sellPrice = sellPrice;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGoodsId(Integer id) {
+        this.goodsId = id;
     }
 
     public String getNameOfGoods() {

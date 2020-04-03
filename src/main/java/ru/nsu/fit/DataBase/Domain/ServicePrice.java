@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class ServicePrice {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public int id;
+    public int serviceId;
 
     public String serviceType;
     public int price;
@@ -24,12 +24,12 @@ public class ServicePrice {
     }
 
 
-    public int getId() {
-        return id;
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setServiceId(int id) {
+        this.serviceId = id;
     }
 
     public String getServiceType() {

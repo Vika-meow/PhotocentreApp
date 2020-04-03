@@ -10,7 +10,7 @@ public class OrderPrice {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public int id;
+    public int orderId;
 
     public String orderType;
     public String paperType;
@@ -28,12 +28,12 @@ public class OrderPrice {
         this.price = price;
     }
 
-    public int getId() {
-        return id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderId(int id) {
+        this.orderId = id;
     }
 
     public String getOrderType() {
