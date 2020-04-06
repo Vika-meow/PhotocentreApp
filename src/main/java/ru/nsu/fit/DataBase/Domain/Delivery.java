@@ -27,6 +27,7 @@ public class Delivery {
         this.supplierId = supplierId;
         this.date = date;
     }
+    
 
     public String getOrganizationName(){ return address != null
             ? address.getAddress() : "none";
