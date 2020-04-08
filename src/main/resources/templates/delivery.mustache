@@ -22,13 +22,19 @@
     </form>
 </div>
 <div>Delivery List</div>
-{{#delivery}}
-    <div>
-        <b>{{deliveryId}}</b>
-        <span>{{organizationName}}</span>
-        <span>{{supplierName}}</span>
-        <span>{{date}}</span>
-    </div>
-{{/delivery}}
+
+        {{#delivery}}
+            <form method="post" action="/insert/delivery/Input">
+            <div>
+                <input type ="hidden" name="deliveryId" value="{{deliveryId}}">
+                <b>{{deliveryId}}</b>
+                <span>{{organizationName}}</span>
+                <span>{{supplierName}}</span>
+                <span>{{date}}</span>
+                <button type="submit">Добавить элементы поставки</button>
+            </div>
+            </form>
+        {{/delivery}}
+
 </body>
 </html>
