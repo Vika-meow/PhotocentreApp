@@ -1,0 +1,40 @@
+<html>
+
+<body>
+<a href="/insert">Back</a>
+<div></div>
+<div>
+    <form method="post" action="/insert/check">
+        <select name ="address" placeholder="Адрес">
+            <option value="-1">Адрес доставки</option>
+            {{#organization}}
+                <option value="{{address}}">{{address}}</option>
+            {{/organization}}
+        </select>
+        <select name ="supplierId" placeholder="Поставщик">
+            <option value="-1">Поставщик</option>
+            {{#supplier}}
+                <option value="{{supplierId}}">{{organization}}</option>
+            {{/supplier}}
+        </select>
+        <input type="date" name="date" placeholder="Дата поставки"/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Delivery List</div>
+
+{{#delivery}}
+    <form method="post" action="/insert/delivery/Input">
+        <div>
+            <input type ="hidden" name="deliveryId" value="{{deliveryId}}">
+            <b>{{deliveryId}}</b>
+            <span>{{organizationName}}</span>
+            <span>{{supplierName}}</span>
+            <span>{{date}}</span>
+            <button type="submit">Добавить элементы поставки</button>
+        </div>
+    </form>
+{{/delivery}}
+
+</body>
+</html>
