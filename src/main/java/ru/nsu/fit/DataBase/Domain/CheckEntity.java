@@ -22,10 +22,18 @@ public class CheckEntity {
     public CheckEntity() {
     }
 
-    public CheckEntity(Date date, Organization organization, Customer customer) {
+    public CheckEntity(Organization organization, Customer customer, Date date) {
         this.date = date;
         this.organization = organization;
         this.customer = customer;
+    }
+
+    public String getOrganizationName(){ return organization != null
+            ? organization.getAddress() : "none";
+    }
+
+    public String getCustomerName() { return customer != null
+            ? customer.getName() : "none";
     }
 
     public int getCheckId() {

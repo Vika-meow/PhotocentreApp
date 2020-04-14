@@ -6,35 +6,30 @@
 <div>
     <form method="post" action="/insert/check">
         <select name ="address" placeholder="Адрес">
-            <option value="-1">Адрес доставки</option>
+            <option value="-1">Адрес магазина</option>
             {{#organization}}
                 <option value="{{address}}">{{address}}</option>
             {{/organization}}
         </select>
-        <select name ="supplierId" placeholder="Поставщик">
-            <option value="-1">Поставщик</option>
-            {{#supplier}}
-                <option value="{{supplierId}}">{{organization}}</option>
-            {{/supplier}}
-        </select>
+        <input type="text" name="customerName" placeholder="Покупатель"/>
         <input type="date" name="date" placeholder="Дата поставки"/>
         <button type="submit">Добавить</button>
     </form>
 </div>
-<div>Delivery List</div>
+<div>Check List</div>
 
-{{#delivery}}
-    <form method="post" action="/insert/delivery/Input">
+{{#check}}
+    <form method="post" action="/insert/check/Input">
         <div>
-            <input type ="hidden" name="deliveryId" value="{{deliveryId}}">
-            <b>{{deliveryId}}</b>
+            <input type ="hidden" name="deliveryId" value="{{checkId}}">
+            <b>{{checkId}}</b>
             <span>{{organizationName}}</span>
-            <span>{{supplierName}}</span>
+            <span>{{customerName}}</span>
             <span>{{date}}</span>
-            <button type="submit">Добавить элементы поставки</button>
+            <button type="submit">Добавить товары в чек</button>
         </div>
     </form>
-{{/delivery}}
+{{/check}}
 
 </body>
 </html>

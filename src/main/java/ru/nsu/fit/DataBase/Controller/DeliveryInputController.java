@@ -28,7 +28,7 @@ public class DeliveryInputController {
     Delivery currentDelivery;
     int deliveryId;
 
-    @PostMapping("/insert/delivery/Input")
+    @GetMapping("/insert/delivery/Input")
     public String main(@RequestParam int deliveryId, Map<String, Object> model){
         currentDelivery = deliveryRepo.findByDeliveryId(deliveryId);
         this.deliveryId = deliveryId;
@@ -47,7 +47,7 @@ public class DeliveryInputController {
         return "deliveryInput";
     }
 
-    @PostMapping("/insert/delivery/InputAdd")
+    @PostMapping("/insert/delivery/Input")
     public String add(@RequestParam int deliveryId,
             @RequestParam int goodsId, @RequestParam int count, Map<String, Object> model){
         currentDelivery = deliveryRepo.findByDeliveryId(deliveryId);
