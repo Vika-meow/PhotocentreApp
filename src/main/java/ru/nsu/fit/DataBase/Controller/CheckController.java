@@ -46,6 +46,8 @@ public class CheckController {
         return "check";
     }
 
+
+
     private void putListofOrganizations(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organization", it);

@@ -1,0 +1,61 @@
+<html>
+
+<body>
+<a href="/insert/check">Back</a>
+<div>Current Check</div>
+{{#currentCheck}}
+    <div>
+        <input type ="hidden" name="checkId" value="{{checkId}}" form="addGoods">
+        <input type ="hidden" name="checkId" value="{{checkId}}" form="addService">
+        <input type ="hidden" name="checkId" value="{{checkId}}" form="addOrder">
+        <b>{{checkId}}</b>
+        <span>{{organizationName}}</span>
+        <span>{{customerName}}</span>
+        <span>{{date}}</span>
+    </div>
+{{/currentCheck}}
+<div>Добавить товар в чек</div>
+<form method="post" id="addGoods" action="/insert/check/itemGoods">
+    <select name ="goodsId" placeholder="Товар">
+        <option value="-1">Товар</option>
+        {{#goods}}
+            <option value={{goodsId}}>{{nameOfGoods}} {{company}} {{goodsModel}}</option>
+        {{/goods}}
+    </select>
+    <input type="text" name="count" placeholder="Количество"/>
+    <button type="submit">Добавить</button>
+</form>
+
+<div>Добавить сервис в чек</div>
+<form method="post" id="addService" action="/insert/check/itemService">
+    <select name ="serviceId" placeholder="Товар">
+        <option value="-1">Сервис</option>
+        {{#services}}
+            <option value={{serviceId}}>{{serviceType}}</option>
+        {{/services}}
+    </select>
+    <input type="text" name="count" placeholder="Количество"/>
+    <button type="submit">Добавить</button>
+</form>
+
+<div>Добавить заказ в чек</div>
+<form method="post" id="addOrder" action="/insert/check/itemOrder">
+    <select name ="orderId" placeholder="Товар">
+        <option value="-1">Заказ</option>
+        {{#orders}}
+            <option value={{orderId}}>{{orderType}} {{paperType}} {{format}}</option>
+        {{/orders}}
+    </select>
+    <input type="text" name="count" placeholder="Количество"/>
+    <button type="submit">Добавить</button>
+</form>
+
+<div>Current Check</div>
+{{#items}}
+    <div>
+        <b>{{itemInput}}</b>
+        <span>{{count}}</span>
+    </div>
+{{/items}}
+</body>
+</html>

@@ -6,7 +6,7 @@
 <div>
     <form method="post" action="/insert/check">
         <select name ="address" placeholder="Адрес">
-            <option value="-1">Адрес доставки</option>
+            <option value="-1">Адрес магазина</option>
             {{#organization}}
                 <option value="{{address}}">{{address}}</option>
             {{/organization}}
@@ -19,9 +19,9 @@
 <div>Check List</div>
 
 {{#check}}
-    <form method="post" action="/insert/check/Input">
+    <form method="get" action="/insert/check/item">
         <div>
-            <input type ="hidden" name="deliveryId" value="{{checkId}}">
+            <input type ="hidden" name="checkId" value="{{checkId}}">
             <b>{{checkId}}</b>
             <span>{{organizationName}}</span>
             <span>{{customerName}}</span>
