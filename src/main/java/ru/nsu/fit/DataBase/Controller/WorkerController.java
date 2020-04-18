@@ -10,9 +10,7 @@ import ru.nsu.fit.DataBase.Domain.Worker;
 import ru.nsu.fit.DataBase.Repos.OrganizationRepo;
 import ru.nsu.fit.DataBase.Repos.WorkerRepo;
 
-import javax.persistence.ManyToOne;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class WorkerController {
@@ -25,8 +23,7 @@ public class WorkerController {
 
     @GetMapping("/insert/worker")
     public String main(Map<String, Object> model){
-        putListofAll(model);
-        putListofOrganizations(model);
+        putListOfAll(model);
         return "worker";
     }
 
@@ -39,17 +36,21 @@ public class WorkerController {
         Worker worker = new Worker(name, profile, organization);
         workerRepo.save(worker);
 
-        putListofAll(model);
-        putListofOrganizations(model);
+        putListOfAll(model);
         return "worker";
     }
 
-    private void putListofOrganizations(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model) {
+        putListOfWorker(model);
+        putListOfOrganizations(model);
+    }
+
+    private void putListOfOrganizations(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organization", it);
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfWorker(Map<String, Object> model){
         Iterable<Worker> it = workerRepo.findAll();
         model.put("workers", it);
     }

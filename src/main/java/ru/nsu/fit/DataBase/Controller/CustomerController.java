@@ -18,7 +18,7 @@ public class CustomerController {
     @GetMapping("/insert/customer")
     public String main(Map<String, Object> model){
 
-        putListofAll(model);
+        putListOfAll(model);
         return "customer";
     }
 
@@ -29,11 +29,11 @@ public class CustomerController {
         Customer customer = new Customer(name,discountCard);
         customerRepo.save(customer);
 
-        putListofAll(model);
+        putListOfAll(model);
         return "customer";
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model){
         Iterable<Customer> it = customerRepo.findAll();
         model.put("customers", it);
     }

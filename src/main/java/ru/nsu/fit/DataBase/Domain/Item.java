@@ -6,21 +6,21 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    int itemId;
+    private int itemId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="checkId")
-    CheckEntity check;
+    private CheckEntity check;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="orderId")
-    OrderPrice orderId;
+    private OrderPrice orderId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="goodsId")
-    GoodsPrice goodsId;
+    private GoodsPrice goodsId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="serviceId")
-    ServicePrice serviceId;
+    private ServicePrice serviceId;
 
     int count;
     boolean urgency;
@@ -69,11 +69,11 @@ public class Item {
 
     public String getItemInput(){
         if(orderId != null){
-            return orderId.orderType + " " + orderId.paperType +" " +  orderId.format;
+            return orderId.getOrderType() + " " + orderId.getPaperType() +" " +  orderId.getFormat();
         }
 
         if(serviceId != null){
-            return serviceId.serviceType;
+            return serviceId.getServiceType();
         }
 
         if(goodsId != null){

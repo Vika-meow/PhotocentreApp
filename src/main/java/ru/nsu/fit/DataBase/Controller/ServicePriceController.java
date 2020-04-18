@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.nsu.fit.DataBase.Domain.OrderPrice;
 import ru.nsu.fit.DataBase.Domain.ServicePrice;
 import ru.nsu.fit.DataBase.Repos.ServicePriceRepo;
 
@@ -18,7 +17,7 @@ public class ServicePriceController {
 
     @GetMapping("/price/service")
     public String main(Map<String, Object> model){
-        putListofAll(model);
+        putListOfAll(model);
         return "priceService";
     }
 
@@ -28,12 +27,12 @@ public class ServicePriceController {
         ServicePrice servicePrice = new ServicePrice(serviceType, price);
         servicePriceRepo.save(servicePrice);
 
-        putListofAll(model);
+        putListOfAll(model);
 
         return "priceService";
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model){
         Iterable<ServicePrice> it = servicePriceRepo.findAll();
         model.put("service", it);
     }

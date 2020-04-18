@@ -26,9 +26,9 @@ public class DeliveryController {
 
     @GetMapping("/insert/delivery")
     public String main(Map<String, Object> model){
-        putListofOrganizations(model);
-        putListofSuppliers(model);
-        putListofAll(model);
+        putListOfOrganizations(model);
+        putListOfSuppliers(model);
+        putListOfDelivery(model);
         return "delivery";
     }
 
@@ -40,24 +40,24 @@ public class DeliveryController {
         Delivery delivery = new Delivery(organization,supplier,date);
         deliveryRepo.save(delivery);
 
-        putListofOrganizations(model);
-        putListofSuppliers(model);
-        putListofAll(model);
+        putListOfOrganizations(model);
+        putListOfSuppliers(model);
+        putListOfDelivery(model);
 
         return "delivery";
     }
 
-    private void putListofOrganizations(Map<String, Object> model){
+    private void putListOfOrganizations(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organization", it);
     }
 
-    private void putListofSuppliers(Map<String, Object> model){
+    private void putListOfSuppliers(Map<String, Object> model){
         Iterable<Supplier> it = supplierRepo.findAll();
         model.put("supplier", it);
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfDelivery(Map<String, Object> model){
         Iterable<Delivery> it = deliveryRepo.findAll();
         model.put("delivery", it);
     }

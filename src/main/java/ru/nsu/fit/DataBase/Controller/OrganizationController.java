@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.nsu.fit.DataBase.Domain.Organization;
-import ru.nsu.fit.DataBase.Domain.ServicePrice;
 import ru.nsu.fit.DataBase.Repos.OrganizationRepo;
 
 import java.util.Map;
@@ -18,7 +17,7 @@ public class OrganizationController {
 
     @GetMapping("/insert/organization")
     public String main(Map<String, Object> model){
-        putListofAll(model);
+        putListOfAll(model);
         return "organization";
     }
 
@@ -28,11 +27,11 @@ public class OrganizationController {
         Organization organization = new Organization(address);
         organizationRepo.save(organization);
 
-        putListofAll(model);
+        putListOfAll(model);
         return "organization";
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organizations", it);
     }

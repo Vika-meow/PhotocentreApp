@@ -1,7 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
 import javax.persistence.*;
-
+//also need some Changes
 @Entity
 public class DeliveryInput {
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.nsu.fit.DataBase.Domain.GoodsPrice;
 import ru.nsu.fit.DataBase.Domain.OrderPrice;
 import ru.nsu.fit.DataBase.Repos.OrderPriceRepo;
 
@@ -19,7 +18,7 @@ public class OrderPriceController {
 
     @GetMapping("/price/order")
     public String main(Map<String, Object> model){
-        putListofAll(model);
+        putListOfAll(model);
         return "priceOrder";
     }
 
@@ -31,12 +30,12 @@ public class OrderPriceController {
         OrderPrice orderPrice = new OrderPrice(orderType, paperType, format, price);
         orderPriceRepo.save(orderPrice);
 
-        putListofAll(model);
+        putListOfAll(model);
 
         return "priceOrder";
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model){
         Iterable<OrderPrice> it = orderPriceRepo.findAll();
         model.put("order", it);
     }

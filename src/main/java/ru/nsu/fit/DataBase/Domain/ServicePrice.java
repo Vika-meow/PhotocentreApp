@@ -9,10 +9,10 @@ import javax.persistence.Id;
 public class ServicePrice {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public int serviceId;
+    private int serviceId;
 
-    public String serviceType;
-    public int price;
+    private String serviceType;
+    private int price;
 
     public ServicePrice(){
 

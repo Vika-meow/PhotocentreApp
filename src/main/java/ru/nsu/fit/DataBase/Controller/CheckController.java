@@ -26,8 +26,7 @@ public class CheckController {
 
     @GetMapping("/insert/check")
     public String main(Map<String, Object> model){
-        putListofOrganizations(model);
-        putListofAll(model);
+        putListOfAll(model);
         return "check";
     }
 
@@ -41,19 +40,21 @@ public class CheckController {
         }
         CheckEntity check = new CheckEntity(organization, customer, date);
         checkRepo.save(check);
-        putListofOrganizations(model);
-        putListofAll(model);
+        putListOfAll(model);
         return "check";
     }
 
+    private void putListOfAll(Map<String, Object> model) {
+        putListOfOrganizations(model);
+        putListOfCheck(model);
+    }
 
-
-    private void putListofOrganizations(Map<String, Object> model){
+    private void putListOfOrganizations(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organization", it);
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfCheck(Map<String, Object> model){
         Iterable<CheckEntity> it = checkRepo.findAll();
         model.put("check", it);
     }

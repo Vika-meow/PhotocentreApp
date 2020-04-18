@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.nsu.fit.DataBase.Domain.*;
 import ru.nsu.fit.DataBase.Repos.*;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.util.Map;
 
 @Controller
@@ -30,7 +27,7 @@ public class CheckItemController {
     @GetMapping("/insert/check/item")
     public String main(@RequestParam int checkId, Map<String, Object> model){
         check = checkRepo.findByCheckId(checkId);
-        putAll(model);
+        putListOfAll(model);
         return "checkItem";
     }
 
@@ -40,7 +37,7 @@ public class CheckItemController {
         GoodsPrice goods = goodsPriceRepo.findByGoodsId(goodsId);
         Item item = new Item(check, goods, count);
         itemRepo.save(item);
-        putAll(model);
+        putListOfAll(model);
         return "checkItem";
     }
 
@@ -50,7 +47,7 @@ public class CheckItemController {
         ServicePrice service = servicePriceRepo.findByServiceId(serviceId);
         Item item = new Item(check, service, count);
         itemRepo.save(item);
-        putAll(model);
+        putListOfAll(model);
         return "checkItem";
     }
 
@@ -61,11 +58,11 @@ public class CheckItemController {
         OrderPrice order = orderPriceRepo.findByOrderId(orderId);
         Item item = new Item(check, order, count);
         itemRepo.save(item);
-        putAll(model);
+        putListOfAll(model);
         return "checkItem";
     }
 
-    private void putAll(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model){
         model.put("currentCheck", check);
 
         Iterable<GoodsPrice> goodsIt = goodsPriceRepo.findAll();

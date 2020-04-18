@@ -10,12 +10,12 @@ public class OrderPrice {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public int orderId;
+    private int orderId;
 
-    public String orderType;
-    public String paperType;
-    public String format;
-    public int price;
+    private String orderType;
+    private String paperType;
+    private String format;
+    private int price;
 
     public OrderPrice() {
     }

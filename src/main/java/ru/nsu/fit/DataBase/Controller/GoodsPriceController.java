@@ -18,7 +18,7 @@ public class GoodsPriceController {
 
     @GetMapping("/price/goods")
     public String main(Map<String, Object> model) {
-        putListofAll(model);
+        putListOfAll(model);
         return "priceGoods";
     }
 
@@ -32,12 +32,12 @@ public class GoodsPriceController {
 
         goodsPriceRepo.save(goodsPrice);
 
-        putListofAll(model);
+        putListOfAll(model);
 
         return "priceGoods";
     }
 
-    private void putListofAll(Map<String, Object> model){
+    private void putListOfAll(Map<String, Object> model){
         Iterable<GoodsPrice> it = goodsPriceRepo.findAll();
         model.put("goods", it);
     }
