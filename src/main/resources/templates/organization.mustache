@@ -1,19 +1,35 @@
 <html>
-
 <body>
 <a href="/insert">Back</a>
 <div></div>
 <div>
-    <form method="post" action="/insert/organization">
-        <input type="text" name="address" placeholder="Адрес" />
-        <button type="submit">Добавить</button>
-    </form>
+<form method="post" action="/insert/organization">
+<input type="text" name="address" placeholder="Адрес" />
+<select name ="branchOfficeAdress" placeholder="Адрес">
+    <option value="-1">Адрес главного филиала</option>
+    {{#organizations}}
+        <option value="{{address}}">{{address}}</option>
+    {{/organizations}}
+</select>
+
+<button type="submit">Добавить</button>
+</form>
 </div>
-<div>Адреса филиалов</div>
-{{#organizations}}
-<div>
-    <span>{{address}}</span>
+
+<script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.9.5/babel.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script type="text/babel" src="/listingAdresses.jsx"></script>
+
+<div>Выводить адреса:
+    <select onchange="makeRequest(this.value)">
+        <option value="/insert/organizationShowAll">Все Организации</option>
+        <option value="/insert/organizationShowFilials">Только Филиалы</option>
+        <option value="Kiosks">Только Киоски</option>
+    </select>
 </div>
-{{/organizations}}
+
+<div id='printAdresses'></div>
 </body>
 </html>
