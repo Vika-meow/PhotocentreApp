@@ -37,6 +37,13 @@ public class OrganizationController {
         return "organization";
     }
 
+    @GetMapping("/insert/organizationShowAll")
+    public String showAll(Map<String, Object> model){
+        Iterable<Organization> it = organizationRepo.findAll();
+        model.put("organizationsShow", it);
+        return "adressesList";
+    }
+
     @GetMapping("/insert/organizationShowFilials")
     public String showFilials(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findByBranchOfficeAdressIsNull();
@@ -44,9 +51,17 @@ public class OrganizationController {
         return "adressesList";
     }
 
+    @GetMapping("/insert/organizationShowKiosks")
+    public String showKiosks(Map<String, Object> model){
+        Iterable<Organization> it = organizationRepo.findByBranchOfficeAdressIsNotNull();
+        model.put("organizationsShow", it);
+        return "adressesList";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organizations", it);
+        it = organizationRepo.findAll();
         model.put("organizationsShow", it);
     }
 }

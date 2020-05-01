@@ -16,20 +16,25 @@
 </form>
 </div>
 
-<script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone@7.9.5/babel.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script type="text/babel" src="/listingAdresses.jsx"></script>
+<script type="text/javascript" src="/static/listingAdresses.js"></script>
 
 <div>Выводить адреса:
     <select onchange="makeRequest(this.value)">
         <option value="/insert/organizationShowAll">Все Организации</option>
         <option value="/insert/organizationShowFilials">Только Филиалы</option>
-        <option value="Kiosks">Только Киоски</option>
+        <option value="/insert/organizationShowKiosks">Только Киоски</option>
     </select>
 </div>
 
-<div id='printAdresses'></div>
+<div id='printAdresses'>
+    <table border="1" >
+        <tr><td>Адрес</td><td>Адрес филиала-родителя</td></tr>
+        {{#organizationsShow}}
+            <tr><td><span>{{address}}</span></td>
+                <td><span>{{branchOfficeAdressString}}</span></td><tr>
+        {{/organizationsShow}}
+    </table>
+</div>
 </body>
 </html>
