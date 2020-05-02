@@ -1,6 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 public class Item {
@@ -137,5 +138,41 @@ public class Item {
 
     public void setUrgency(boolean urgency) {
         this.urgency = urgency;
+    }
+
+    //fororder
+    public String getOrderType(){
+        return orderId != null
+                ? orderId.getOrderType() : "none";
+    }
+
+    public String getOrderPaperType(){
+        return orderId != null
+                ? orderId.getPaperType() : "none";
+    }
+
+    public String getOrderFormat(){
+        return orderId != null
+                ? orderId.getFormat() : "none";
+    }
+
+    public Integer getOrderPrice(){
+        return orderId != null
+                ? orderId.getPrice()*count : 0;
+    }
+
+    public String getCustomerName(){
+        return check != null
+                ? check.getCustomerName() : "null";
+    }
+
+    public String getAdress(){
+        return check != null
+                ? check.getOrganizationName() : "null";
+    }
+
+    public Date getDate(){
+        return check != null
+                ? check.getDate() : new Date(System.currentTimeMillis());
     }
 }

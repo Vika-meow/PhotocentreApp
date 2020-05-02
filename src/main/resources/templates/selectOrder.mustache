@@ -1,0 +1,48 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/myStyle.css">
+</head>
+    <body>
+    <a href="/">Back to main page</a>
+    <div>Показать заказы :</div>
+    <div>
+        <form method="get" action="/select/ordersParams">
+            <select name="organizationFilter">
+                <option value="all">Все Организации</option>
+                <option value="filials">Только Филиалы</option>
+                <option value="kiosks">Только Киоски</option>
+            </select>
+            <span>после даты</span>
+            <input type="date" name="afterDate" value="2020-01-01" placeholder="После даты"/>
+            <span>до даты</span>
+            <input type="date" name="beforeDate" value={{currentDate}} placeholder="До даты"/>
+            <button type="submit">Найти</button>
+            <button type="reset">Очистить</button>
+        </form>
+    </div>
+    </div>
+    <div>Orders list</div>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Order Type</th>
+            <th>Paper Type</th>
+            <th>Format</th>
+            <th>Price</th>
+            <th>Adress</th>
+            <th>Date</th>
+        </tr>
+        {{#orders}}
+            <tr>
+                <td>{{customerName}}</td>
+                <td>{{orderType}}</td>
+                <td>{{orderPaperType}}</td>
+                <td>{{orderFormat}}</td>
+                <td>{{orderPrice}}</td>
+                <td>{{adress}}</td>
+                <td>{{date}}</td>
+            </tr>
+        {{/orders}}
+    </table>
+    </body>
+</html>
