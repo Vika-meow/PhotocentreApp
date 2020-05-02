@@ -16,6 +16,6 @@ public class MainController {
     //choose which select do you want to do
     @GetMapping("/insert")
     public String insert(){
-        return "insert";
+        return "insert/insert";
     }
 }

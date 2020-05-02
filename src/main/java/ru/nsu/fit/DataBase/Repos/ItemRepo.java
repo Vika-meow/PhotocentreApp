@@ -21,4 +21,8 @@ public interface ItemRepo extends CrudRepository<Item, Integer> {
     //public List<Item> findByOrderIdIsNotNullAndDateBetween(@Param("after")Date after, @Param("before") Date before);
 
     public List<Item> findByOrderIdIsNotNullAndCheck_DateBetween(Date start, Date end);
+
+    public List<Item> findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNull(Date start, Date end);
+
+    public List<Item> findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNotNull(Date start, Date end);
 }

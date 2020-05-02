@@ -1,17 +1,20 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/myStyle.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
 </head>
     <body>
     <a href="/">Back to main page</a>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/selectOrder.js"></script>
     <div>Показать заказы :</div>
     <div>
-        <form method="get" action="/select/ordersParams">
+        <form method="get" action="/select/orders/organizationTypeAndDate">
             <select name="organizationFilter">
                 <option value="all">Все Организации</option>
                 <option value="filials">Только Филиалы</option>
                 <option value="kiosks">Только Киоски</option>
             </select>
+            <button type="button" onclick="addDates()" id='addDates'>Добавить ограничение на даты</button>
             <span>после даты</span>
             <input type="date" name="afterDate" value="2020-01-01" placeholder="После даты"/>
             <span>до даты</span>

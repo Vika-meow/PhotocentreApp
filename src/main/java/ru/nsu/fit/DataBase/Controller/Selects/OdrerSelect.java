@@ -23,20 +23,36 @@ public class OdrerSelect {
         Date date = new Date(System.currentTimeMillis());
         model.put("currentDate", date);
 
-        return "selectOrder";
+        return "/select/orders/selectOrder";
     }
 
-    @GetMapping("/select/ordersParams")
+    @GetMapping("/select/orders/organizationTypeAndDate")
     public String select(@RequestParam String organizationFilter,
                          @RequestParam Date afterDate, @RequestParam Date beforeDate, Map<String, Object> model){
         Date date = new Date(System.currentTimeMillis());
         model.put("currentDate", date);
+        if(organizationFilter.equals("all")){
+            Iterable<Item> it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetween(afterDate, beforeDate);
+            model.put("orders", it);
+            return "/select/orders/selectOrder";
+        }
 
-        if((afterDate != null) && (beforeDate != null)){
+        if(organizationFilter.equals("filials")){
+            Iterable<Item> it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNull(afterDate, beforeDate);
+            model.put("orders", it);
+            return "/select/orders/selectOrder";
+        }
+
+        if(organizationFilter.equals("kiosks")){
+            Iterable<Item> it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNotNull(afterDate, beforeDate);
+            model.put("orders", it);
+            return "/select/orders/selectOrder";
+        }
+       /* if((afterDate != null) && (beforeDate != null)){
             Iterable<Item> it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetween(afterDate, beforeDate);
             model.put("orders", it);
             return "selectOrder";
-        }
+        }*/
         Iterable<Item> it = itemRepo.findByOrderIdIsNotNull();
         model.put("orders", it);
         return "selectOrder";
