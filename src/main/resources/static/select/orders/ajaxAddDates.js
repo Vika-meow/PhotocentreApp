@@ -1,5 +1,4 @@
-function addDates() {
-    url = "/addition/addDates";
+/*function addDates(url) {
     var httpRequest = false;
 
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
@@ -23,18 +22,38 @@ function addDates() {
         return false;
     }
 
-    httpRequest.onreadystatechange = function() { alertContents(httpRequest, url); };
+    httpRequest.onreadystatechange = function() { addition(httpRequest); };
     httpRequest.open('GET', url, true);
     httpRequest.send(null);
 
 }
 
-function alertContents(httpRequest) {
+function addition(httpRequest) {
     if (httpRequest.readyState == 4) {
         if (httpRequest.status == 200) {
             $('#addDates').html(httpRequest.responseText);
         } else {
-            alert('С запросом возникла проблема. ' + httpRequest.status);
+            alert('С запросом возникла проблема. ' + httpRequest.url + " " + httpRequest.status);
         }
     }
-}
+}*/
+/*
+$.ajax( {
+    url: '/select/orders/addDates',
+    type: "get",
+    success: function(){
+        $('#addDates').html(httpRequest.responseText);
+    }
+});*/
+
+$(document).on("click", "#datesButton", function() {
+    $.get('/select/orders/addDates', function(html){
+        jQuery('#addDates').html(html);
+    });
+});
+
+$(document).on("click", "#removeDatesButton", function() {
+    $.get('/select/orders/removeDates', function(html){
+        jQuery('#addDates').html(html);
+    });
+});

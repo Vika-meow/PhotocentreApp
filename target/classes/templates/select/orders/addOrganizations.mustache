@@ -1,0 +1,13 @@
+<select name="organizationFilter" id="organizationFilter">
+    <option value="all">Все Организации</option>
+    <option value="filials">Только Филиалы</option>
+    <option value="kiosks">Только Киоски</option>
+</select>
+
+<select name="orgs" id="putOrganizationsSelect" multiple="multiple">
+    {{#organizations}}
+        <option value="{{address}}">{{address}}</option>
+    {{/organizations}}
+</select>
+
+<button type="button" id = "removeOrganizationsButton">Убрать ограничение по организациям</button>

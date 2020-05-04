@@ -15,14 +15,17 @@ public interface ItemRepo extends CrudRepository<Item, Integer> {
 
     public List<Item> findByOrderIdIsNotNull();
 
-    /*Query("select  from item natural join check" +
-            "where order_id != null" +
-            "and date between :after and :before")*/
-    //public List<Item> findByOrderIdIsNotNullAndDateBetween(@Param("after")Date after, @Param("before") Date before);
+    public List<Item> findByOrderIdIsNotNullAndCheck_Organization_BranchOfficeAdressIsNull();
+
+    public List<Item> findByOrderIdIsNotNullAndCheck_Organization_BranchOfficeAdressIsNotNull();
 
     public List<Item> findByOrderIdIsNotNullAndCheck_DateBetween(Date start, Date end);
 
     public List<Item> findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNull(Date start, Date end);
 
     public List<Item> findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNotNull(Date start, Date end);
+
+    public List<Item> findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_AddressIn(Date start, Date end, List<String> addresses);
+
+    public List<Item> findByOrderIdIsNotNullAndCheck_Organization_AddressIn(List<String> addresses);
 }
