@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/static/select/orders/ajaxAddOrganizations.js"></script>
     <script type="text/javascript" src="/static/select/orders/ajaxAddDates.js"></script>
+    <script type="text/javascript" src="/static/select/orders/ajaxAddOrderType.js"></script>
     <div>Показать заказы :</div>
     <div>
         <form method="get" action="/select/orders/organizationTypeAndDate">
@@ -21,6 +22,10 @@
             <br>
             <div  id="addDates">
             <button type="button" id = "datesButton">Добавить ограничение на даты</button>
+            </div>
+            <br>
+            <div id="addOrderType">
+            <button type="button" id = "orderTypeButton">Добавить ограничение на тип заказа</button>
             </div>
             <br>
             <button type="submit">Найти</button>

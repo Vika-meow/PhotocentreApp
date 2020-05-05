@@ -1,0 +1,6 @@
+<select name="orderTypes" multiple>
+    {{#orderList}}
+        <option value={{orderId}}>{{orderType}} {{paperType}} {{format}}</option>
+    {{/orderList}}
+</select>
+<button type="button" id = "orderTypeRemove">Убрать ограничение на тип заказа</button>
