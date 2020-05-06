@@ -5,7 +5,7 @@ table {
     text-align: center;
 }
 th, td:first-child {
-    background: #AFCDE7;
+    background: #cc7fec;
     color: white;
     padding: 10px 20px;
 }
@@ -15,7 +15,7 @@ th, td {
     border-color: white;
 }
 td {
-    background: #D8E6F3;
+    background: #efd2f3;
 }
 th:first-child, td:first-child {
     text-align: left;

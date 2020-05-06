@@ -11,7 +11,10 @@ import ru.nsu.fit.DataBase.Repos.ItemRepo;
 import ru.nsu.fit.DataBase.Repos.OrderPriceRepo;
 import ru.nsu.fit.DataBase.Repos.OrganizationRepo;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +39,7 @@ public class OdrerSelect {
         return "/select/orders/selectOrder";
     }
 
-    @GetMapping("/select/orders/organizationTypeAndDate")
+    /*@GetMapping("/select/orders/organizationTypeAndDate")
     public String select(@RequestParam String organizationFilter,
                          @RequestParam(required = false) List<String> orgs,
                          @RequestParam(required = false) Date afterDate,
@@ -116,11 +119,85 @@ public class OdrerSelect {
                     }
                 }
             }
-        }
+        }*/
 
-        model.put("orders", it);
-        model.put("fullPrice", countSum(it));
-        return "/select/orders/selectOrder";
+        @GetMapping("/select/orders/organizationTypeAndDate")
+        public String select(@RequestParam String organizationFilter,
+                @RequestParam(required = false) List<String> orgs,
+                @RequestParam(required = false) Date afterDate,
+                @RequestParam(required = false) Date beforeDate,
+                @RequestParam(required = false) List<Integer> orderTypes,
+                Map<String, Object> model){
+            Date date = new Date(System.currentTimeMillis());
+            model.put("currentDate", date);
+
+            Iterable<Item> it = null;
+
+            List<Object> args = new ArrayList<>();
+            List<Class> params = new ArrayList<>();
+
+            String methodName = "findBy";
+            if (orderTypes!= null){
+                methodName = methodName.concat("OrderId_OrderIdIn");
+                args.add(orderTypes);
+                params.add(List.class);
+            } else {
+                methodName = methodName.concat("OrderIdIsNotNull");
+            }
+
+            if((afterDate != null) && (beforeDate != null)){
+                methodName = methodName.concat("AndCheck_DateBetween");
+                args.add(afterDate);
+                params.add(Date.class);
+                args.add(beforeDate);
+                params.add(Date.class);
+            }
+
+            if(orgs != null){
+                methodName = methodName.concat("AndCheck_Organization_AddressIn");
+                args.add(orgs);
+                params.add(List.class);
+            } else {
+                if(organizationFilter.equals("filials")){
+                    methodName = methodName.concat("AndCheck_Organization_BranchOfficeAdressIsNull");
+                }
+                if(organizationFilter.equals("kiosks")){
+                    methodName = methodName.concat("AndCheck_Organization_BranchOfficeAdressIsNotNull");
+                }
+            }
+
+            Class[] paramsArray = new Class[params.size()];
+            int number = 0;
+            for(Class i : params){
+                paramsArray[number] = i;
+                number++;
+            }
+
+            Class c = itemRepo.getClass();
+            Method method = null;
+            try {
+                    method = c.getDeclaredMethod(methodName, paramsArray);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+
+            Object[] argsArray = new Object[args.size()];
+            number = 0;
+            for (Object i : args){
+                argsArray[number] = i;
+                number++;
+            }
+            try {
+                    it = (List<Item>) method.invoke(itemRepo, argsArray);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+            model.put("orders", it);
+            model.put("fullPrice", countSum(it));
+            return "/select/orders/selectOrder";
     }
 
     @GetMapping("/select/orders/addDates")

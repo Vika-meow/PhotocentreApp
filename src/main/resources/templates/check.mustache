@@ -1,5 +1,5 @@
 <html>
-
+<head><link rel="stylesheet" type="text/css" href="../static/tableStyle.css"></head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
@@ -18,18 +18,29 @@
 </div>
 <div>Check List</div>
 
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Адрес</th>
+        <th>Покупатель</th>
+        <th>Дата</th>
+        <th>button</th>
+    </tr>
 {{#check}}
     <form method="get" action="/insert/check/item">
         <div>
             <input type ="hidden" name="checkId" value="{{checkId}}">
-            <b>{{checkId}}</b>
-            <span>{{organizationName}}</span>
-            <span>{{customerName}}</span>
-            <span>{{date}}</span>
-            <button type="submit">Добавить товары в чек</button>
+            <tr>
+            <td>{{checkId}}</td>
+            <td>{{organizationName}}</td>
+            <td>{{customerName}}</td>
+            <td>{{date}}</td>
+            <td><button type="submit">Добавить товары в чек</button></td>
+            </tr>
         </div>
     </form>
 {{/check}}
+</table>
 
 </body>
 </html>

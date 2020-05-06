@@ -1,0 +1,27 @@
+button {
+    color: #fff; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: #b9a8bf; /* фон кнопки */
+    padding: .7em 1.5em; /* отступ от текста */
+    outline: none; /* убирать контур в Mozilla */
+    border-radius: 5px;
+}
+
+button:hover { background: #3f1b55; } /* при наведении курсора мышки */
+button:active { background: #180921; } /* при нажатии */
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    background: #f1def5;
+    padding: 10px 20px;
+}

@@ -1,5 +1,5 @@
 <html>
-
+<head><link rel="stylesheet" type="text/css" href="../static/tableStyle.css"></head>
 <body>
 <a href="/insert/check">Back</a>
 <div>Current Check</div>
@@ -22,7 +22,7 @@
             <option value={{goodsId}}>{{nameOfGoods}} {{company}} {{goodsModel}}</option>
         {{/goods}}
     </select>
-    <input type="text" name="count" placeholder="Количество"/>
+    <input type="number" name="count" placeholder="Количество"/>
     <button type="submit">Добавить</button>
 </form>
 
@@ -34,7 +34,7 @@
             <option value={{serviceId}}>{{serviceType}}</option>
         {{/services}}
     </select>
-    <input type="text" name="count" placeholder="Количество"/>
+    <input type="number" name="count" placeholder="Количество"/>
     <button type="submit">Добавить</button>
 </form>
 
@@ -46,16 +46,21 @@
             <option value={{orderId}}>{{orderType}} {{paperType}} {{format}}</option>
         {{/orders}}
     </select>
-    <input type="text" name="count" placeholder="Количество"/>
+    <input type="number" name="count" placeholder="Количество"/>
     <button type="submit">Добавить</button>
 </form>
 
-<div>Current Check</div>
-{{#items}}
-    <div>
-        <b>{{itemInput}}</b>
-        <span>{{count}}</span>
-    </div>
-{{/items}}
+<table>
+    <tr>
+        <th>Наименование</th>
+        <th>Количество</th>
+    </tr>
+    {{#items}}
+        <tr>
+            <td>{{itemInput}}</td>
+            <td>{{count}}</td>
+        </tr>
+    {{/items}}
+</table>
 </body>
 </html>
