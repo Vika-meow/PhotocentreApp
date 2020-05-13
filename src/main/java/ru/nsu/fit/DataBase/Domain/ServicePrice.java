@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class ServicePrice {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int serviceId;
 
     private String serviceType;

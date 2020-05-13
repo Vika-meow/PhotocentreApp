@@ -1,0 +1,21 @@
+<span>Общая сумма по заказам: {{fullPrice}}</span>
+<table>
+    <tr>
+        <th value="Check_Customer_Name" id="Customer_Name">Customer Name⇳</th>
+        <th value="OrderId_OrderType" id = "Order_Type">Order Type⇳</th>
+        <th value="OrderId_PaperType" id = "Paper_Type">Paper Type⇳</th>
+        <th value="OrderId_Format" id = "Format">Format⇳</th>
+        <th value="Check_Organization_Address" id="Address">Address⇳</th>
+        <th value="Check_Date" id="Date">Date⇳</th>
+    </tr>
+    {{#orders}}
+        <tr>
+            <td>{{customerName}}</td>
+            <td>{{orderType}}</td>
+            <td>{{orderPaperType}}</td>
+            <td>{{orderFormat}}</td>
+            <td>{{adress}}</td>
+            <td>{{date}}</td>
+        </tr>
+    {{/orders}}
+</table>

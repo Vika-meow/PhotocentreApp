@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class DeliveryInput {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int deliveryInputId;
 
     @ManyToOne(fetch = FetchType.EAGER)

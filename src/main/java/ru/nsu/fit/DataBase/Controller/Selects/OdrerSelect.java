@@ -1,6 +1,7 @@
 package ru.nsu.fit.DataBase.Controller.Selects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,14 @@ public class OdrerSelect {
     @Autowired
     OrderPriceRepo orderPriceRepo;
 
+    String currentMethodName = "findByOrderIdIsNotNull";
+    String currentSortName;
+    String currentDirection = "asc";
+    Class[] currentParamsArray;
+    Object[] currentArgsArray;
+    List<Class> currentParams = new ArrayList<>();
+    List<Object> currentArgs = new ArrayList<>();
+
     @GetMapping("/select/orders")
     public String startPage(Map<String, Object> model){
         Iterable<Item> it = itemRepo.findByOrderIdIsNotNull();
@@ -39,165 +48,89 @@ public class OdrerSelect {
         return "/select/orders/selectOrder";
     }
 
-    /*@GetMapping("/select/orders/organizationTypeAndDate")
+    @GetMapping("/select/orders/organizationTypeAndDate")
     public String select(@RequestParam String organizationFilter,
-                         @RequestParam(required = false) List<String> orgs,
-                         @RequestParam(required = false) Date afterDate,
-                         @RequestParam(required = false) Date beforeDate,
-                         @RequestParam(required = false) List<Integer> orderTypes,
-                         Map<String, Object> model){
+            @RequestParam(required = false) List<String> orgs,
+            @RequestParam(required = false) Date afterDate,
+            @RequestParam(required = false) Date beforeDate,
+            @RequestParam(required = false) List<Integer> orderTypes,
+            Map<String, Object> model){
         Date date = new Date(System.currentTimeMillis());
         model.put("currentDate", date);
 
         Iterable<Item> it = null;
 
-        if(orderTypes != null) {
-            if (orgs != null) {
-                if ((afterDate != null) && (beforeDate != null)) {
-                    it = itemRepo.findByOrderId_OrderIdInAndCheck_DateBetweenAndCheck_Organization_AddressIn(orderTypes, afterDate, beforeDate, orgs);
-                } else {
-                    it = itemRepo.findByOrderId_OrderIdInAndCheck_Organization_AddressIn(orderTypes, orgs);
-                }
-            } else {
-                if ((afterDate != null) && (beforeDate != null)) {
-                    if (organizationFilter.equals("all")) {
-                        it = itemRepo.findByOrderId_OrderIdInAndCheck_DateBetween(orderTypes, afterDate, beforeDate);
-                    }
+        List<Object> args = new ArrayList<>();
+        List<Class> params = new ArrayList<>();
 
-                    if (organizationFilter.equals("filials")) {
-                        it = itemRepo.findByOrderId_OrderIdInAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNull(orderTypes,afterDate, beforeDate);
-                    }
-
-                    if (organizationFilter.equals("kiosks")) {
-                        it = itemRepo.findByOrderId_OrderIdInAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNotNull(orderTypes, afterDate, beforeDate);
-                    }
-                } else {
-                    if (organizationFilter.equals("all")) {
-                        it = itemRepo.findByOrderId_OrderIdIn(orderTypes);
-                    }
-
-                    if (organizationFilter.equals("filials")) {
-                        it = itemRepo.findByOrderId_OrderIdInAndCheck_Organization_BranchOfficeAdressIsNull(orderTypes);
-                    }
-
-                    if (organizationFilter.equals("kiosks")) {
-                        it = itemRepo.findByOrderId_OrderIdInAndCheck_Organization_BranchOfficeAdressIsNotNull(orderTypes);
-                    }
-                }
-            }
+        String methodName = "findBy";
+        if (orderTypes!= null){
+            methodName = methodName.concat("OrderId_OrderIdIn");
+            args.add(orderTypes);
+            params.add(List.class);
         } else {
-            if (orgs != null) {
-                if ((afterDate != null) && (beforeDate != null)) {
-                    it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_AddressIn(afterDate, beforeDate, orgs);
-                } else {
-                    it = itemRepo.findByOrderIdIsNotNullAndCheck_Organization_AddressIn(orgs);
-                }
-            } else {
-                if ((afterDate != null) && (beforeDate != null)) {
-                    if (organizationFilter.equals("all")) {
-                        it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetween(afterDate, beforeDate);
-                    }
+            methodName = methodName.concat("OrderIdIsNotNull");
+        }
 
-                    if (organizationFilter.equals("filials")) {
-                        it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNull(afterDate, beforeDate);
-                    }
+        if((afterDate != null) && (beforeDate != null)){
+            methodName = methodName.concat("AndCheck_DateBetween");
+            args.add(afterDate);
+            params.add(Date.class);
+            args.add(beforeDate);
+            params.add(Date.class);
+        }
 
-                    if (organizationFilter.equals("kiosks")) {
-                        it = itemRepo.findByOrderIdIsNotNullAndCheck_DateBetweenAndCheck_Organization_BranchOfficeAdressIsNotNull(afterDate, beforeDate);
-                    }
-                } else {
-                    if (organizationFilter.equals("all")) {
-                        it = itemRepo.findByOrderIdIsNotNull();
-                    }
-
-                    if (organizationFilter.equals("filials")) {
-                        it = itemRepo.findByOrderIdIsNotNullAndCheck_Organization_BranchOfficeAdressIsNull();
-                    }
-
-                    if (organizationFilter.equals("kiosks")) {
-                        it = itemRepo.findByOrderIdIsNotNullAndCheck_Organization_BranchOfficeAdressIsNotNull();
-                    }
-                }
+        if(orgs != null){
+            methodName = methodName.concat("AndCheck_Organization_AddressIn");
+            args.add(orgs);
+            params.add(List.class);
+        } else {
+            if(organizationFilter.equals("filials")){
+                methodName = methodName.concat("AndCheck_Organization_BranchOfficeAdressIsNull");
             }
-        }*/
-
-        @GetMapping("/select/orders/organizationTypeAndDate")
-        public String select(@RequestParam String organizationFilter,
-                @RequestParam(required = false) List<String> orgs,
-                @RequestParam(required = false) Date afterDate,
-                @RequestParam(required = false) Date beforeDate,
-                @RequestParam(required = false) List<Integer> orderTypes,
-                Map<String, Object> model){
-            Date date = new Date(System.currentTimeMillis());
-            model.put("currentDate", date);
-
-            Iterable<Item> it = null;
-
-            List<Object> args = new ArrayList<>();
-            List<Class> params = new ArrayList<>();
-
-            String methodName = "findBy";
-            if (orderTypes!= null){
-                methodName = methodName.concat("OrderId_OrderIdIn");
-                args.add(orderTypes);
-                params.add(List.class);
-            } else {
-                methodName = methodName.concat("OrderIdIsNotNull");
+            if(organizationFilter.equals("kiosks")){
+                methodName = methodName.concat("AndCheck_Organization_BranchOfficeAdressIsNotNull");
             }
+        }
 
-            if((afterDate != null) && (beforeDate != null)){
-                methodName = methodName.concat("AndCheck_DateBetween");
-                args.add(afterDate);
-                params.add(Date.class);
-                args.add(beforeDate);
-                params.add(Date.class);
-            }
+        Class[] paramsArray = new Class[params.size()];
+        int number = 0;
+        for(Class i : params){
+            paramsArray[number] = i;
+            number++;
+        }
 
-            if(orgs != null){
-                methodName = methodName.concat("AndCheck_Organization_AddressIn");
-                args.add(orgs);
-                params.add(List.class);
-            } else {
-                if(organizationFilter.equals("filials")){
-                    methodName = methodName.concat("AndCheck_Organization_BranchOfficeAdressIsNull");
-                }
-                if(organizationFilter.equals("kiosks")){
-                    methodName = methodName.concat("AndCheck_Organization_BranchOfficeAdressIsNotNull");
-                }
-            }
+        Class c = itemRepo.getClass();
+        Method method = null;
+        try {
+                method = c.getDeclaredMethod(methodName, paramsArray);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
 
-            Class[] paramsArray = new Class[params.size()];
-            int number = 0;
-            for(Class i : params){
-                paramsArray[number] = i;
-                number++;
-            }
+        Object[] argsArray = new Object[args.size()];
+        number = 0;
+        for (Object i : args){
+            argsArray[number] = i;
+            number++;
+        }
+        try {
+                it = (List<Item>) method.invoke(itemRepo, argsArray);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
-            Class c = itemRepo.getClass();
-            Method method = null;
-            try {
-                    method = c.getDeclaredMethod(methodName, paramsArray);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            }
+        currentParams = params;
+        currentArgs = args;
+        currentMethodName = methodName;
+        currentParamsArray = paramsArray;
+        currentArgsArray = argsArray;
 
-            Object[] argsArray = new Object[args.size()];
-            number = 0;
-            for (Object i : args){
-                argsArray[number] = i;
-                number++;
-            }
-            try {
-                    it = (List<Item>) method.invoke(itemRepo, argsArray);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-
-            model.put("orders", it);
-            model.put("fullPrice", countSum(it));
-            return "/select/orders/selectOrder";
+        model.put("orders", it);
+        model.put("fullPrice", countSum(it));
+        return "/select/orders/selectOrder";
     }
 
     @GetMapping("/select/orders/addDates")
@@ -252,6 +185,63 @@ public class OdrerSelect {
         Iterable<OrderPrice> it = orderPriceRepo.findAll();
         model.put("orderList", it);
         return "/select/orders/removeOrderType";
+    }
+
+    @GetMapping("/select/orders/orderBy")
+    public String orderBy(String orderBy, Map<String, Object> model){
+        List<Item> it = null;
+
+        String methodName;
+        methodName = currentMethodName;
+
+        List<Class> params = new ArrayList<>(currentParams);
+        List<Object> args = new ArrayList<>(currentArgs);
+
+        params.add(Sort.class);
+        if(orderBy.equals(currentSortName) && (currentDirection.equals("asc"))) {
+                args.add(Sort.by(Sort.Direction.DESC, orderBy));
+                currentDirection = "desc";
+        } else {
+            args.add(Sort.by(Sort.Direction.ASC, orderBy));
+            currentDirection = "asc";
+        }
+
+        currentSortName = orderBy;
+
+        Class[] paramsArray = new Class[params.size()];
+        int number = 0;
+        for(Class i : params){
+            paramsArray[number] = i;
+            number++;
+        }
+
+        Object[] argsArray = new Object[args.size()];
+        number = 0;
+        for (Object i : args){
+            argsArray[number] = i;
+            number++;
+        }
+
+        Class c = itemRepo.getClass();
+        Method method = null;
+        try {
+            method = c.getDeclaredMethod(methodName, paramsArray);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            it = (List<Item>) method.invoke(itemRepo, argsArray);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        model.put("orders", it);
+        model.put("fullPrice", countSum(it));
+
+        return "/select/orders/tableOfSelects";
     }
 
     private int countSum(Iterable<Item> it){

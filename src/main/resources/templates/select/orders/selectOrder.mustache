@@ -33,29 +33,29 @@
         </form>
     </div>
     </div>
-    <span>Общая сумма по заказам: {{fullPrice}}</span>
     <div>Orders list</div>
-    <table>
-        <tr>
-            <th>Customer Name</th>
-            <th>Order Type</th>
-            <th>Paper Type</th>
-            <th>Format</th>
-            <th>Price</th>
-            <th>Adress</th>
-            <th>Date</th>
-        </tr>
-        {{#orders}}
+    <div id = 'tableOfSelects'>
+        <span>Общая сумма по заказам: {{fullPrice}}</span>
+        <table>
             <tr>
-                <td>{{customerName}}</td>
-                <td>{{orderType}}</td>
-                <td>{{orderPaperType}}</td>
-                <td>{{orderFormat}}</td>
-                <td>{{orderPrice}}</td>
-                <td>{{adress}}</td>
-                <td>{{date}}</td>
+                <th value="Check_Customer_Name" id="Customer_Name">Customer Name⇳</th>
+                <th value="OrderId_OrderType" id = "Order_Type">Order Type⇳</th>
+                <th value="OrderId_PaperType" id = "Paper_Type">Paper Type⇳</th>
+                <th value="OrderId_Format" id = "Format">Format⇳</th>
+                <th value="Check_Organization_Address" id="Address">Address⇳</th>
+                <th value="Check_Date" id="Date">Date⇳</th>
             </tr>
-        {{/orders}}
-    </table>
+            {{#orders}}
+                <tr>
+                    <td>{{customerName}}</td>
+                    <td>{{orderType}}</td>
+                    <td>{{orderPaperType}}</td>
+                    <td>{{orderFormat}}</td>
+                    <td>{{adress}}</td>
+                    <td>{{date}}</td>
+                </tr>
+            {{/orders}}
+        </table>
+    </div>
     </body>
 </html>

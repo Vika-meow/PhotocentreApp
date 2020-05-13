@@ -6,7 +6,7 @@ import java.sql.Date;
 @Entity
 public class CheckEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int checkId;
 
     private Date date;

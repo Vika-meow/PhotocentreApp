@@ -6,7 +6,7 @@ import java.sql.Date;
 @Entity
 public class Delivery {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int deliveryId;
 
     @ManyToOne(fetch = FetchType.EAGER)

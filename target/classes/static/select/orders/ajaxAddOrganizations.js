@@ -1,3 +1,55 @@
+
+$(document).on("click", "#organizationsButton", function() {
+    $.get('/select/orders/addOrganizations', function(html){
+        jQuery('#addOrganizations').html(html);
+    });
+});
+
+$(document).on("click", "#removeOrganizationsButton", function() {
+    $.get('/select/orders/removeOrganizations', function(html){
+        jQuery('#addOrganizations').html(html);
+    });
+});
+
+$(document).on("change", "#organizationFilter", function () {
+    var selected = $(this).val();
+    $.get('/select/orders/putOrganizations',
+        {
+            typeOfOrganizations : selected
+        }, function(html){
+            jQuery('#putOrganizationsSelect').html(html);
+        });
+})
+
+var text;
+var directionFlag = 0;
+
+$(document).on("click", "th", function () {
+    //var text = this.text();
+    var id = $(this).attr('id');
+    var direction = "▼"; //0
+    if((text === $(this).attr('value')) && (directionFlag === 1)) {
+        direction = "▲"; //1
+        directionFlag = 0;
+        //text = $(this).attr('value');
+    } else {
+        direction = "▼";
+        directionFlag = 1;
+    }
+    text = $(this).attr('value');
+    $.get('/select/orders/orderBy',
+        {
+            orderBy : text
+        }, function(html){
+            jQuery('#tableOfSelects').html(html);
+            jQuery('#' + id).text(id + direction);
+        });
+})
+
+$(document).ready(function() {
+    $('#orderType').multiselect();
+});
+
 /*function addOrganizations(url) {
     //let url = "/select/orders/addDates";
     var httpRequest = false;
@@ -39,26 +91,17 @@ function smth(httpRequest) {
     }
 }*/
 
-$(document).on("click", "#organizationsButton", function() {
-    $.get('/select/orders/addOrganizations', function(html){
-        jQuery('#addOrganizations').html(html);
-    });
-});
-
-$(document).on("click", "#removeOrganizationsButton", function() {
-    $.get('/select/orders/removeOrganizations', function(html){
-        jQuery('#addOrganizations').html(html);
-    });
-});
-
-$(document).on("change", "#organizationFilter", function () {
-    var selected = $(this).val();
-    $.get('/select/orders/putOrganizations',
+//    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+/*
+$("th").click(function () {
+    var text = this.text();
+    $get('/select/orders/orderBy',
         {
-            typeOfOrganizations : selected
-        }, function(html){
-        jQuery('#putOrganizationsSelect').html(html);
-    });
+            orderBy : text
+        }
+        ,function (html) {
+        jQuery('#tableOfSelects').html(html);
+    })
 })
 
 /*$(document).ready(function() {
