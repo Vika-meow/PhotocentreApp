@@ -12,22 +12,38 @@ create table customer (
     discount_card boolean not null,
     primary key (name));
 
-create table delivery
-    (delivery_id serial not null, date date, address varchar(255),
-    supplier_id int4, primary key (delivery_id));
+create table delivery(
+    delivery_id serial not null,
+    date date,
+    address varchar(255),
+    supplier_id int4,
+    primary key (delivery_id));
 
-create table delivery_input
-    (delivery_input_id serial not null, count int4 not null,
-    delivery_id int4, goods_id int4, primary key (delivery_input_id));
+create table delivery_input(
+    delivery_input_id serial not null,
+    count int4 not null,
+    delivery_id int4,
+    goods_id int4,
+    primary key (delivery_input_id));
 
-create table goods_price
-    (goods_id serial not null, buy_price int4 not null, company varchar(255),
-    goods_model varchar(255), name_of_goods varchar(255),
-    sell_price int4 not null, primary key (goods_id));
+create table goods_price(
+    goods_id serial not null,
+    buy_price int4 not null,
+    company varchar(255),
+    goods_model varchar(255),
+    name_of_goods varchar(255),
+    sell_price int4 not null,
+    primary key (goods_id));
 
-create table item
-    (item_id serial not null, count int4 not null, urgency boolean not null,
-    check_id int4, goods_id int4, order_id int4, service_id int4, primary key (item_id));
+create table item(
+    item_id serial not null,
+    count int4 not null,
+    urgency boolean not null,
+    check_id int4,
+    goods_id int4,
+    order_id int4,
+    service_id int4,
+    primary key (item_id));
 
 create table order_price
     (order_id serial not null, format varchar(255), order_type varchar(255),

@@ -9,6 +9,6 @@ public class PriceController {
 
     @GetMapping("/price")
     public String insert(){
-        return "price";
+        return "/insert/price/price";
     }
 }

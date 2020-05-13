@@ -1,18 +1,18 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../static/tableStyle.css"></head>
+<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
 <div>
     <form method="post" action="/insert/check">
-        <select name ="address" placeholder="Адрес">
-            <option value="-1">Адрес магазина</option>
+        <select name ="address" required placeholder="Адрес">
+            <option selected disabled value=''>Адрес магазина</option>
             {{#organization}}
                 <option value="{{address}}">{{address}}</option>
             {{/organization}}
         </select>
         <input type="text" name="customerName" required placeholder="Покупатель"/>
-        <input type="date" name="date" placeholder="Дата поставки"/>
+        <input type="date" name="date" required placeholder="Дата поставки"/>
         <button type="submit">Добавить</button>
     </form>
 </div>

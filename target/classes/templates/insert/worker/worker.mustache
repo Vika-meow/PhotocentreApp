@@ -1,0 +1,44 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/insert">Back</a>
+<div></div>
+<div>
+    <form method="post" action="/insert/worker">
+        <select name ="address" placeholder="Адрес" required>
+            <option value='' selected disabled>Адрес работы</option>
+            {{#organization}}
+            <option value="{{address}}">{{address}}</option>
+            {{/organization}}
+        </select>
+        <input type="text" name="name" placeholder="Имя" required>
+        <select name="profile" required>
+            <option value='' selected disabled>Профиль работника</option>
+            <option value="Photographer">Photographer</option>
+            <option value="Seller">Seller</option>
+            <option value="Manager">Manager</option>
+        </select>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Workers List</div>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Профиль</th>
+        <th>Адрес организации</th>
+    </tr>
+    {{#workers}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{profile}}</td>
+            <td>{{organizationName}}</td>
+        </tr>
+    {{/workers}}
+</table>
+</body>
+</html>

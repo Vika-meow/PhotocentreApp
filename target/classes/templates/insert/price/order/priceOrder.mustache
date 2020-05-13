@@ -1,0 +1,39 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/price">Back</a>
+<div></div>
+<div>
+    <form method="post" action="/price/orderAdd">
+        <input type="text" name="orderType" placeholder="Тип заказа" required/>
+        <input type="text" name="paperType" placeholder="Тип бумаги" required/>
+        <input type="text" name="format" placeholder="Формат" required/>
+        <input type="number" name="price" placeholder="Цена" required/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<table>
+    <caption>Прайс-лист на заказы</caption>
+    <tr>
+        <th>Тип заказа</th>
+        <th>Тип бумаги</th>
+        <th>Формат бумаги</th>
+        <th>Цена</th>
+    </tr>
+    {{#order}}
+        <tr>
+            <td>{{orderType}}</td>
+            <td>{{paperType}}</td>
+            <td>{{format}}</td>
+            <td>{{price}}</td>
+        </tr>
+    {{/order}}
+</table>
+
+</body>
+</html>

@@ -19,7 +19,7 @@ public class CustomerController {
     public String main(Map<String, Object> model){
 
         putListOfAll(model);
-        return "customer";
+        return "/insert/customer/customer";
     }
 
     @PostMapping("/insert/customer")
@@ -30,7 +30,7 @@ public class CustomerController {
         customerRepo.save(customer);
 
         putListOfAll(model);
-        return "customer";
+        return "/insert/customer/customer";
     }
 
     private void putListOfAll(Map<String, Object> model){

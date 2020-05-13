@@ -24,7 +24,7 @@ public class WorkerController {
     @GetMapping("/insert/worker")
     public String main(Map<String, Object> model){
         putListOfAll(model);
-        return "worker";
+        return "/insert/worker/worker";
     }
 
     @PostMapping("/insert/worker")
@@ -37,7 +37,7 @@ public class WorkerController {
         workerRepo.save(worker);
 
         putListOfAll(model);
-        return "worker";
+        return "/insert/worker/worker";
     }
 
     private void putListOfAll(Map<String, Object> model) {

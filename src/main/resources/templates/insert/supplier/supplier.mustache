@@ -1,0 +1,25 @@
+<html>
+<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
+<body>
+<a href="/insert">Back to all inserts</a>
+<div>
+    <form method="post" action="/insert/supplier">
+        <input type="text" name="organization" placeholder="Supplier Name" />
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Supplier List</div>
+<table>
+    <tr>
+        <th>Supplier Id</th>
+        <th>Название организации</th>
+    </tr>
+    {{#suppliers}}
+        <tr>
+            <td>{{supplierId}}</td>
+            <td>{{organization}}</td>
+        </tr>
+    {{/suppliers}}
+</table>
+</body>
+</html>

@@ -22,7 +22,7 @@ public class OrganizationController {
     }
 
     @PostMapping("/insert/organization")
-    public String add(@RequestParam String address, @RequestParam String branchOfficeAdress,
+    public String add(@RequestParam String address, @RequestParam(required = false) String branchOfficeAdress,
                         Map<String, Object> model){
         Organization organization;
         if(branchOfficeAdress != null) {

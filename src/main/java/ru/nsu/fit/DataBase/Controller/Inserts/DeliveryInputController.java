@@ -26,17 +26,17 @@ public class DeliveryInputController {
     Delivery currentDelivery;
 
 
-    @GetMapping("/insert/delivery/Input")
+    @GetMapping("/insert/delivery/input")
     public String main(@RequestParam int deliveryId, Map<String, Object> model){
 
         putCurrentDelivery(deliveryId, model);
         putListOfGoods(model);
         putListOfCurrentDeliveryInput(model);
 
-        return "deliveryInput";
+        return "/insert/delivery/input/deliveryInput";
     }
 
-    @PostMapping("/insert/delivery/Input")
+    @PostMapping("/insert/delivery/input")
     public String add(@RequestParam int deliveryId,
             @RequestParam int goodsId, @RequestParam int count, Map<String, Object> model){
 
@@ -48,7 +48,7 @@ public class DeliveryInputController {
         deliveryInputRepo.save(deliveryInput);
 
         putListOfCurrentDeliveryInput(model);
-        return "deliveryInput";
+        return "/insert/delivery/input/deliveryInput";
     }
 
     private void putCurrentDelivery(int deliveryId, Map<String, Object> model){

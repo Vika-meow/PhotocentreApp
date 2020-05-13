@@ -1,5 +1,5 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../static/tableStyle.css"></head>
+<head><link rel="stylesheet" type="text/css" href="../../../../static/tableStyle.css"></head>
 <body>
 <a href="/insert/check">Back</a>
 <div>Current Check</div>
@@ -16,37 +16,37 @@
 {{/currentCheck}}
 <div>Добавить товар в чек</div>
 <form method="post" id="addGoods" action="/insert/check/itemGoods">
-    <select name ="goodsId" placeholder="Товар">
-        <option value="-1">Товар</option>
+    <select name ="goodsId" placeholder="Товар" required>
+        <option selected disabled value=''>Товар</option>
         {{#goods}}
             <option value={{goodsId}}>{{nameOfGoods}} {{company}} {{goodsModel}}</option>
         {{/goods}}
     </select>
-    <input type="number" name="count" placeholder="Количество"/>
+    <input type="number" name="count" placeholder="Количество" required/>
     <button type="submit">Добавить</button>
 </form>
 
 <div>Добавить сервис в чек</div>
 <form method="post" id="addService" action="/insert/check/itemService">
-    <select name ="serviceId" placeholder="Товар">
-        <option value="-1">Сервис</option>
+    <select name ="serviceId" required placeholder="Товар">
+        <option disabled selected value=''>Сервис</option>
         {{#services}}
             <option value={{serviceId}}>{{serviceType}}</option>
         {{/services}}
     </select>
-    <input type="number" name="count" placeholder="Количество"/>
+    <input type="number" required name="count" placeholder="Количество"/>
     <button type="submit">Добавить</button>
 </form>
 
 <div>Добавить заказ в чек</div>
 <form method="post" id="addOrder" action="/insert/check/itemOrder">
-    <select name ="orderId" placeholder="Товар">
-        <option value="-1">Заказ</option>
+    <select name ="orderId" placeholder="Товар" required>
+        <option selected disabled value=''>Заказ</option>
         {{#orders}}
             <option value={{orderId}}>{{orderType}} {{paperType}} {{format}}</option>
         {{/orders}}
     </select>
-    <input type="number" name="count" placeholder="Количество"/>
+    <input type="number" name="count" required placeholder="Количество"/>
     <button type="submit">Добавить</button>
 </form>
 

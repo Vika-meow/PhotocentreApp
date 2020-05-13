@@ -27,7 +27,7 @@ public class CheckController {
     @GetMapping("/insert/check")
     public String main(Map<String, Object> model){
         putListOfAll(model);
-        return "check";
+        return "/insert/check/check";
     }
 
     @PostMapping("/insert/check")
@@ -41,7 +41,7 @@ public class CheckController {
         CheckEntity check = new CheckEntity(organization, customer, date);
         checkRepo.save(check);
         putListOfAll(model);
-        return "check";
+        return "/insert/check/check";
     }
 
     private void putListOfAll(Map<String, Object> model) {

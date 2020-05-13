@@ -1,18 +1,22 @@
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
 <div>
 <form method="post" action="/insert/organization">
-<input type="text" name="address" placeholder="Адрес" />
-<select name ="branchOfficeAdress" placeholder="Адрес">
-    <option value="-1">Адрес главного филиала</option>
-    {{#organizations}}
-        <option value="{{address}}">{{address}}</option>
-    {{/organizations}}
-</select>
-
-<button type="submit">Добавить</button>
+    <input type="text" name="address" placeholder="Адрес" required/>
+    <select name ="branchOfficeAdress" placeholder="Адрес">
+        <option selected disabled value=''>Адрес главного филиала</option>
+        {{#organizations}}
+            <option value="{{address}}">{{address}}</option>
+        {{/organizations}}
+    </select>
+    <button type="submit">Добавить</button>
 </form>
 </div>
 
@@ -26,13 +30,18 @@
         <option value="/insert/organizationShowKiosks">Только Киоски</option>
     </select>
 </div>
-
+<br>
 <div id='printAdresses'>
-    <table border="1" >
-        <tr><td>Адрес</td><td>Адрес филиала-родителя</td></tr>
+    <table>
+        <tr>
+            <td>Адрес</td>
+            <td>Адрес филиала-родителя</td>
+        </tr>
         {{#organizationsShow}}
-            <tr><td><span>{{address}}</span></td>
-                <td><span>{{branchOfficeAdressString}}</span></td><tr>
+            <tr>
+                <td>{{address}}</td>
+                <td>{{branchOfficeAdressString}}</td>
+        <tr>
         {{/organizationsShow}}
     </table>
 </div>

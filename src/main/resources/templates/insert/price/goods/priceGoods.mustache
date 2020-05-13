@@ -1,0 +1,40 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/price">Back</a>
+<div></div>
+<div>
+    <form method="post" action="/price/goodsAdd">
+        <input type="text" name="nameOfGoods" placeholder="Наименование товара" required/>
+        <input type="text" name="company" placeholder="Компания-производитель" required>
+        <input type="text" name="goodsModel" placeholder="Модель товара" required/>
+        <input type="number" name="buyPrice" placeholder="Цена покупки" required/>
+        <input type="number" name="sellPrice" placeholder="Цена продажи" required/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<table>
+    <caption>Прайс-лист на фототовары</caption>
+    <tr>
+        <th>Наименование</th>
+        <th>Компания</th>
+        <th>Модель</th>
+        <th>Цена покупки</th>
+        <th>Цена продажи</th>
+    </tr>
+    {{#goods}}
+        <tr>
+            <td>{{nameOfGoods}}</td>
+            <td>{{company}}</td>
+            <td>{{goodsModel}}</td>
+            <td>{{buyPrice}}</td>
+            <td>{{sellPrice}}</td>
+        </tr>
+    {{/goods}}
+</table>
+</body>
+</html>

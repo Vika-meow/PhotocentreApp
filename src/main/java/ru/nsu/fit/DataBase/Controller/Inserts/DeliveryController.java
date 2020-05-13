@@ -29,7 +29,7 @@ public class DeliveryController {
         putListOfOrganizations(model);
         putListOfSuppliers(model);
         putListOfDelivery(model);
-        return "delivery";
+        return "/insert/delivery/delivery";
     }
 
     @PostMapping("/insert/delivery")
@@ -44,7 +44,7 @@ public class DeliveryController {
         putListOfSuppliers(model);
         putListOfDelivery(model);
 
-        return "delivery";
+        return "/insert/delivery/delivery";
     }
 
     private void putListOfOrganizations(Map<String, Object> model){

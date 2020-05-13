@@ -1,18 +1,16 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../static/tableStyle.css"></head>
+<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
 <div>
     <form method="post" action="/insert/customer">
-        <input type="text" name="name" placeholder="Имя покупателя" />
-        <select name="discountCard" >
-            <option value="-1">Наличие дисконтной карты</option>
+        <input type="text" name="name" placeholder="Имя покупателя" required/>
+        <select name="discountCard" required>
+            <option selected disabled value=''>Наличие дисконтной карты</option>
             <option value="0">Нет карты</option>
             <option value="1">Есть карта</option>
         </select>
-
-        <!input type="text" name="discountCard" placeholder="Наличие дисконтной карты 0/1">
         <button type="submit">Добавить</button>
     </form>
 </div>

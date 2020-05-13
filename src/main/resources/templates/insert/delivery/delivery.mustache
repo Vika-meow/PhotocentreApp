@@ -1,5 +1,5 @@
 <html>
-
+<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
@@ -22,19 +22,26 @@
     </form>
 </div>
 <div>Delivery List</div>
-
-        {{#delivery}}
-            <form method="get" action="/insert/delivery/Input">
-            <div>
+<table>
+    <tr>
+        <th>Delivery Id</th>
+        <th>Имя организации</th>
+        <th>Поставщик</th>
+        <th>Дата</th>
+        <th>Добавить элементы поставки</th>
+    </tr>
+    {{#delivery}}
+        <form method="get" action="/insert/delivery/input">
+            <tr>
                 <input type ="hidden" name="deliveryId" value="{{deliveryId}}">
-                <b>{{deliveryId}}</b>
-                <span>{{organizationName}}</span>
-                <span>{{supplierName}}</span>
-                <span>{{date}}</span>
-                <button type="submit">Добавить элементы поставки</button>
-            </div>
-            </form>
-        {{/delivery}}
-
+                <td>{{deliveryId}}</td>
+                <td>{{organizationName}}</td>
+                <td>{{supplierName}}</td>
+                <td>{{date}}</td>
+                <td><button type="submit">Добавить элементы поставки</button></td>
+            </tr>
+        </form>
+    {{/delivery}}
+</table>
 </body>
 </html>

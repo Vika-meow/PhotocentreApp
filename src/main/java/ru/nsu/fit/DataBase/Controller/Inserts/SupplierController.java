@@ -24,7 +24,7 @@ public class SupplierController {
 
         model.put("suppliers", it);
 
-        return "supplier";
+        return "/insert/supplier/supplier";
     }
 
     @PostMapping("/insert/supplier")
@@ -37,7 +37,7 @@ public class SupplierController {
 
         model.put("suppliers", it);
 
-        return "supplier";
+        return "/insert/supplier/supplier";
     }
 
 

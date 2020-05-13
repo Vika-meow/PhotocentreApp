@@ -19,7 +19,7 @@ public class GoodsPriceController {
     @GetMapping("/price/goods")
     public String main(Map<String, Object> model) {
         putListOfAll(model);
-        return "priceGoods";
+        return "/insert/price/goods/priceGoods";
     }
 
     @PostMapping("/price/goodsAdd")
@@ -34,7 +34,7 @@ public class GoodsPriceController {
 
         putListOfAll(model);
 
-        return "priceGoods";
+        return "/insert/price/goods/priceGoods";
     }
 
     private void putListOfAll(Map<String, Object> model){

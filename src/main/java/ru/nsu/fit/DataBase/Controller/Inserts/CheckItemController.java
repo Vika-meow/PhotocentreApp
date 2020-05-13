@@ -28,7 +28,7 @@ public class CheckItemController {
     public String main(@RequestParam int checkId, Map<String, Object> model){
         check = checkRepo.findByCheckId(checkId);
         putListOfAll(model);
-        return "checkItem";
+        return "/insert/check/item/checkItem";
     }
 
     @PostMapping("/insert/check/itemGoods")
@@ -38,7 +38,7 @@ public class CheckItemController {
         Item item = new Item(check, goods, count);
         itemRepo.save(item);
         putListOfAll(model);
-        return "checkItem";
+        return "/insert/check/item/checkItem";
     }
 
     @PostMapping("/insert/check/itemService")
@@ -48,7 +48,7 @@ public class CheckItemController {
         Item item = new Item(check, service, count);
         itemRepo.save(item);
         putListOfAll(model);
-        return "checkItem";
+        return "/insert/check/item/checkItem";
     }
 
     @PostMapping("/insert/check/itemOrder")
@@ -59,7 +59,7 @@ public class CheckItemController {
         Item item = new Item(check, order, count);
         itemRepo.save(item);
         putListOfAll(model);
-        return "checkItem";
+        return "/insert/check/item/checkItem";
     }
 
     private void putListOfAll(Map<String, Object> model){

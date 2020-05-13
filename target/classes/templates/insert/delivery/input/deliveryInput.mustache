@@ -1,5 +1,5 @@
 <html>
-
+<head><link rel="stylesheet" type="text/css" href="../../../../static/tableStyle.css"></head>
 <body>
 <a href="/insert/delivery">Back</a>
 <div>Current delivery</div>
@@ -13,7 +13,7 @@
         </div>
     {{/delivery}}
 
-<form method="post" id="add" action="/insert/delivery/Input">
+<form method="post" id="add" action="/insert/delivery/input">
     <select name ="goodsId" placeholder="Товар">
         <option value="-1">Товар</option>
         {{#goods}}
@@ -25,13 +25,22 @@
 </form>
 
 <div>Current delivery</div>
-{{#deliveryInput}}
-    <div>
-        <b>{{nameOfGoods}}</b>
-        <span>{{goodsCompany}}</span>
-        <span>{{goodsModel}}</span>
-        <span>{{count}}</span>
-    </div>
-{{/deliveryInput}}
+<table>
+    <tr>
+        <th>Наименование товара</th>
+        <th>Компания-производитель</th>
+        <th>Модель</th>
+        <th>Количество</th>
+    </tr>
+    {{#deliveryInput}}
+        <tr>
+            <td>{{nameOfGoods}}</td>
+            <td>{{goodsCompany}}</td>
+            <td>{{goodsModel}}</td>
+            <td>{{count}}</td>
+        </tr>
+    {{/deliveryInput}}
+</table>
+
 </body>
 </html>

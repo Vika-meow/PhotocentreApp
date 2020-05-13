@@ -31,3 +31,14 @@ td {
 th:first-child, td:first-child {
     text-align: left;
 }
+
+a {
+    color: #9d00ff; text-decoration: none;
+}
+a:hover {
+    border-bottom: 4px double #a476d7;
+}
+
+head {
+    background: #efd2f3;
+}
