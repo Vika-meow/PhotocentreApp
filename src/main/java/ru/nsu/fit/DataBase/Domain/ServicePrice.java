@@ -1,9 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ServicePrice {
@@ -13,6 +11,10 @@ public class ServicePrice {
 
     private String serviceType;
     private int price;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "serviceId")
+    private List<Item> items;
 
     public ServicePrice(){
 

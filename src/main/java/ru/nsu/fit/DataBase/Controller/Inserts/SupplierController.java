@@ -40,5 +40,16 @@ public class SupplierController {
         return "/insert/supplier/supplier";
     }
 
+    @PostMapping("/insert/supplier/delete")
+    public String delete(@RequestParam int supplierId, Map<String, Object> model){
+       Supplier supplier = supplierRepo.findBySupplierId(supplierId);
+       supplierRepo.delete(supplier);
+
+        Iterable<Supplier> it = supplierRepo.findAll();
+
+        model.put("suppliers", it);
+        return "/insert/supplier/supplierTable";
+    }
+
 
 }

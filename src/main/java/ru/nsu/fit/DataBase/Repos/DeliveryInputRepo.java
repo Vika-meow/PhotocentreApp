@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DeliveryInputRepo extends CrudRepository<DeliveryInput, Integer> {
     public List<DeliveryInput> findByDelivery_DeliveryId(int deliveryId);
+    public DeliveryInput findByDeliveryInputId(int deliveryInputId);
 }

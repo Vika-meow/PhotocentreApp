@@ -31,12 +31,19 @@
         <th>Имя</th>
         <th>Профиль</th>
         <th>Адрес организации</th>
+        <th>Удаление</th>
     </tr>
     {{#workers}}
         <tr>
             <td>{{name}}</td>
             <td>{{profile}}</td>
             <td>{{organizationName}}</td>
+            <td>
+                <form method="post" action="/insert/worker/delete">
+                    <input type="hidden" name="name" value="{{name}}">
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
         </tr>
     {{/workers}}
 </table>

@@ -1,0 +1,21 @@
+<caption>Прайс-лист на фототовары</caption>
+<tr>
+    <th>Наименование</th>
+    <th>Компания</th>
+    <th>Модель</th>
+    <th>Цена покупки</th>
+    <th>Цена продажи</th>
+    <th>Удалить</th>
+</tr>
+{{#goods}}
+    <tr>
+        <td>{{nameOfGoods}}</td>
+        <td>{{company}}</td>
+        <td>{{goodsModel}}</td>
+        <td>{{buyPrice}}</td>
+        <td>{{sellPrice}}</td>
+        <td>
+            <button type="submit" id="deleteButton" value="{{goodsId}}">Удалить</button>
+        </td>
+    </tr>
+{{/goods}}

@@ -51,6 +51,15 @@ public class DeliveryInputController {
         return "/insert/delivery/input/deliveryInput";
     }
 
+    @PostMapping("/insert/delivery/input/delete")
+    public String delete(@RequestParam int id, Map<String, Object> model){
+        DeliveryInput deliveryInput = deliveryInputRepo.findByDeliveryInputId(id);
+        deliveryInputRepo.delete(deliveryInput);
+
+        putListOfCurrentDeliveryInput(model);
+        return "/insert/delivery/input/deliveryInput";
+    }
+
     private void putCurrentDelivery(int deliveryId, Map<String, Object> model){
         this.currentDelivery = deliveryRepo.findByDeliveryId(deliveryId);
         model.put("delivery", currentDelivery);

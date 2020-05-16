@@ -1,5 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity

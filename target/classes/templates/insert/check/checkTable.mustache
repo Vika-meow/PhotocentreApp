@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Адрес</th>
+        <th>Покупатель</th>
+        <th>Дата</th>
+        <th>button</th>
+        <th>Удаление</th>
+    </tr>
+    {{#check}}
+        <form method="get" action="/insert/check/item">
+            <input type ="hidden" name="checkId" value="{{checkId}}">
+            <tr>
+                <td>{{checkId}}</td>
+                <td>{{organizationName}}</td>
+                <td>{{customerName}}</td>
+                <td>{{date}}</td>
+                <td><button type="submit">Добавить товары в чек</button></td>
+        </form>
+        <td>
+            <button type="submit" value="{{checkId}}" id="deleteButton">Удалить</button>
+        </td>
+        </tr>
+    {{/check}}
+</table>

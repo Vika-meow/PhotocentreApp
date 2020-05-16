@@ -1,6 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Organization {
@@ -11,6 +12,22 @@ public class Organization {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "branchOfficeAdress")
     private Organization branchOfficeAdress;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "branchOfficeAdress")
+    private List<Organization> kiosks;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "address")
+    private List<CheckEntity> checkEntities;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "address")
+    private List<Delivery> deliveries;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "address")
+    private List<Worker> workers;
 
     public Organization(){
 

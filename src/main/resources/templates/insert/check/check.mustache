@@ -1,5 +1,9 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
@@ -16,8 +20,12 @@
         <button type="submit">Добавить</button>
     </form>
 </div>
-<div>Check List</div>
 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/insert/check/deleteAjax.js"></script>
+
+<div>Check List</div>
+<div id="tableId">
 <table>
     <tr>
         <th>Id</th>
@@ -25,10 +33,10 @@
         <th>Покупатель</th>
         <th>Дата</th>
         <th>button</th>
+        <th>Удаление</th>
     </tr>
 {{#check}}
     <form method="get" action="/insert/check/item">
-        <div>
             <input type ="hidden" name="checkId" value="{{checkId}}">
             <tr>
             <td>{{checkId}}</td>
@@ -36,11 +44,13 @@
             <td>{{customerName}}</td>
             <td>{{date}}</td>
             <td><button type="submit">Добавить товары в чек</button></td>
-            </tr>
-        </div>
     </form>
+            <td>
+                    <button type="submit" value="{{checkId}}" id="deleteButton">Удалить</button>
+            </td>
+            </tr>
 {{/check}}
 </table>
-
+</div>
 </body>
 </html>

@@ -1,9 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class OrderPrice {
@@ -16,6 +14,10 @@ public class OrderPrice {
     private String paperType;
     private String format;
     private int price;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "orderId")
+    private List<Item> items;
 
     public OrderPrice() {
     }

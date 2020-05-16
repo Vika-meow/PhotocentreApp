@@ -1,5 +1,9 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../../../../static/tableStyle.css"></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert/check">Back</a>
 <div>Current Check</div>
@@ -54,11 +58,18 @@
     <tr>
         <th>Наименование</th>
         <th>Количество</th>
+        <th>Удаление</th>
     </tr>
     {{#items}}
         <tr>
             <td>{{itemInput}}</td>
             <td>{{count}}</td>
+            <td>
+                <form method="post" action="/insert/check/item/delete">
+                    <input type="hidden" name="id" value={{itemId}}>
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
         </tr>
     {{/items}}
 </table>

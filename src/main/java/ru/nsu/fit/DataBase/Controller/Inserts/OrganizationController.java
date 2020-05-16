@@ -58,6 +58,17 @@ public class OrganizationController {
         return "/insert/organization/adressesList";
     }
 
+    @PostMapping("/insert/organization/delete")
+    public String delete(@RequestParam String address,
+                         Map<String, Object> model){
+        Organization organization = organizationRepo.findByAddress(address);
+        organizationRepo.delete(organization);
+
+        Iterable<Organization> it = organizationRepo.findAll();
+        model.put("organizationsShow", it);
+        return "/insert/organization/adressesList";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organizations", it);

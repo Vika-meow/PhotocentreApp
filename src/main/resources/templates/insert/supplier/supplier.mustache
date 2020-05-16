@@ -1,5 +1,9 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert">Back to all inserts</a>
 <div>
@@ -9,17 +13,35 @@
     </form>
 </div>
 <div>Supplier List</div>
-<table>
+<table id="tableId">
     <tr>
         <th>Supplier Id</th>
         <th>Название организации</th>
+        <th>Удалить</th>
     </tr>
     {{#suppliers}}
         <tr>
             <td>{{supplierId}}</td>
             <td>{{organization}}</td>
+            <td>
+                <button type="submit" value="{{supplierId}}" id="deleteButton">Удалить</button>
+            </td>
         </tr>
     {{/suppliers}}
 </table>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $(document).on("click", "#deleteButton", function() {
+        var id = $(this).attr('value');
+        let isBoss = confirm("У этого поставщика могли быть поставки, вы уверены, что хотите удалить его?");
+        if(isBoss) {
+            $.post('/insert/supplier/delete', {
+                supplierId: id
+            }, function (html) {
+                jQuery('#tableId').html(html);
+            });
+        }
+    });
+</script>
 </body>
 </html>

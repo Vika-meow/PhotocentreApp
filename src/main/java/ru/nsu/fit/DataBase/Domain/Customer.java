@@ -1,13 +1,21 @@
 package ru.nsu.fit.DataBase.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Customer {
     @Id
     private String name;
     private boolean discountCard;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "name")
+    private List<CheckEntity> checkEntities;
 
     public Customer() {
     }
@@ -36,5 +44,13 @@ public class Customer {
 
     public void setDiscountCard(boolean discountCard) {
         this.discountCard = discountCard;
+    }
+
+    public List<CheckEntity> getCheckEntities() {
+        return checkEntities;
+    }
+
+    public void setCheckEntities(List<CheckEntity> checkEntities) {
+        this.checkEntities = checkEntities;
     }
 }

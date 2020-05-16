@@ -1,5 +1,9 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
@@ -14,18 +18,28 @@
         <button type="submit">Добавить</button>
     </form>
 </div>
-<div>Покупатели</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/insert/customer/deleteCustomer.js"></script>
+
+<div id="tableId">
 <table>
+    <caption>Список покупателей</caption>
     <tr>
         <th>Имя</th>
         <th>Наличие дисконтной карты</th>
+        <th>Удаление</th>
     </tr>
     {{#customers}}
         <tr>
             <td>{{name}}</td>
             <td>{{discountCard}}</td>
+            <td>
+                <button type="submit" value="{{name}}" id="deleteCustomer">Удалить</button>
+            </td>
         </tr>
     {{/customers}}
 </table>
+</div>
 </body>
 </html>

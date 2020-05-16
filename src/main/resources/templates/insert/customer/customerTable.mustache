@@ -1,0 +1,17 @@
+<table>
+    <caption>Список покупателей</caption>
+    <tr>
+        <th>Имя</th>
+        <th>Наличие дисконтной карты</th>
+        <th>Удаление</th>
+    </tr>
+    {{#customers}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{discountCard}}</td>
+            <td>
+                <button type="submit" value="name" id="deleteCustomer">Удалить</button>
+            </td>
+        </tr>
+    {{/customers}}
+</table>

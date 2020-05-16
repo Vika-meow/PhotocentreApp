@@ -47,6 +47,14 @@ public class DeliveryController {
         return "/insert/delivery/delivery";
     }
 
+    @PostMapping("/insert/delivery/delete")
+    public String delete(@RequestParam int deliveryId, Map<String, Object> model){
+        deliveryRepo.deleteById(deliveryId);
+
+        putListOfDelivery(model);
+        return "/insert/delivery/deliveryTable";
+    }
+
     private void putListOfOrganizations(Map<String, Object> model){
         Iterable<Organization> it = organizationRepo.findAll();
         model.put("organization", it);

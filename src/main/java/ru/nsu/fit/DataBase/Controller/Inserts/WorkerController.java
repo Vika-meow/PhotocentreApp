@@ -40,6 +40,16 @@ public class WorkerController {
         return "/insert/worker/worker";
     }
 
+    @PostMapping("/insert/worker/delete")
+    public  String delete(@RequestParam String name, Map<String, Object> model){
+        /*Worker worker = workerRepo.findByName(name);
+        workerRepo.delete(worker);*/
+        workerRepo.deleteById(name);
+
+        putListOfAll(model);
+        return "/insert/worker/worker";
+    }
+
     private void putListOfAll(Map<String, Object> model) {
         putListOfWorker(model);
         putListOfOrganizations(model);

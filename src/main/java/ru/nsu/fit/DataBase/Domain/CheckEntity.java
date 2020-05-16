@@ -1,7 +1,11 @@
 package ru.nsu.fit.DataBase.Domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class CheckEntity {
@@ -13,11 +17,16 @@ public class CheckEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Organization organization;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "name")
     private Customer customer;
+/*______________*/
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "checkId")
+    List<Item> items;
 
     public CheckEntity() {
     }
@@ -66,5 +75,13 @@ public class CheckEntity {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

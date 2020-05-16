@@ -1,5 +1,8 @@
 package ru.nsu.fit.DataBase.Domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -16,9 +19,11 @@ public class Item {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="orderId")
     private OrderPrice orderId;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="goodsId")
     private GoodsPrice goodsId;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="serviceId")
     private ServicePrice serviceId;

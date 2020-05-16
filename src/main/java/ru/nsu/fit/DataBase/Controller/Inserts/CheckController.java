@@ -44,6 +44,15 @@ public class CheckController {
         return "/insert/check/check";
     }
 
+    @PostMapping("/insert/check/delete")
+    public String delete(@RequestParam int checkId, Map<String, Object> model){
+        checkRepo.deleteById(checkId);
+
+        putListOfCheck(model);
+        //putListOfAll(model);
+        return "/insert/check/checkTable";
+    }
+
     private void putListOfAll(Map<String, Object> model) {
         putListOfOrganizations(model);
         putListOfCheck(model);

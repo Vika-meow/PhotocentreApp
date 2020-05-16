@@ -2,6 +2,7 @@ package ru.nsu.fit.DataBase.Domain;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Delivery {
@@ -16,6 +17,10 @@ public class Delivery {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "supplierId")
     private Supplier supplierId;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "deliveryId")
+    private List<DeliveryInput> deliveryInputs;
 
     private Date date;
 

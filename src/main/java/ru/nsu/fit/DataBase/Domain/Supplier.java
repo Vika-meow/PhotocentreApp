@@ -1,9 +1,7 @@
 package ru.nsu.fit.DataBase.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Supplier {
@@ -12,6 +10,10 @@ public class Supplier {
     private Integer supplierId;
 
     private String organization;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "supplierId")
+    private List<Delivery> deliveries;
 
     public Supplier(){};
 

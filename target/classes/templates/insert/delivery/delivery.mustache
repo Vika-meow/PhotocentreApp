@@ -1,5 +1,9 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css"></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert">Back</a>
 <div></div>
@@ -22,25 +26,29 @@
     </form>
 </div>
 <div>Delivery List</div>
-<table>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/insert/delivery/deleteDelivery.js"></script>
+<table id="deliveryTable">
     <tr>
         <th>Delivery Id</th>
         <th>Имя организации</th>
         <th>Поставщик</th>
         <th>Дата</th>
         <th>Добавить элементы поставки</th>
+        <th>Удалить</th>
     </tr>
     {{#delivery}}
-        <form method="get" action="/insert/delivery/input">
             <tr>
+                <form method="get" action="/insert/delivery/input">
                 <input type ="hidden" name="deliveryId" value="{{deliveryId}}">
                 <td>{{deliveryId}}</td>
                 <td>{{organizationName}}</td>
                 <td>{{supplierName}}</td>
                 <td>{{date}}</td>
                 <td><button type="submit">Добавить элементы поставки</button></td>
+                </form>
+                <td><button type="submit" id="deleteDelivery" value={{deliveryId}}>Удалить поставку</button></td>
             </tr>
-        </form>
     {{/delivery}}
 </table>
 </body>

@@ -32,6 +32,16 @@ public class ServicePriceController {
         return "/insert/price/service/priceService";
     }
 
+    @PostMapping("/price/service/delete")
+    public String delete(@RequestParam int serviceId, Map<String, Object> model){
+        ServicePrice servicePrice = servicePriceRepo.findByServiceId(serviceId);
+        servicePriceRepo.delete(servicePrice);
+
+        putListOfAll(model);
+
+        return "/insert/price/service/tableService";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         Iterable<ServicePrice> it = servicePriceRepo.findAll();
         model.put("service", it);

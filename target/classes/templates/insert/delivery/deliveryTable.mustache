@@ -1,0 +1,23 @@
+<tr>
+    <th>Delivery Id</th>
+    <th>Имя организации</th>
+    <th>Поставщик</th>
+    <th>Дата</th>
+    <th>Добавить элементы поставки</th>
+    <th>Удалить</th>
+</tr>
+{{#delivery}}
+
+        <tr>
+            <form method="get" action="/insert/delivery/input">
+            <input type ="hidden" name="deliveryId" value="{{deliveryId}}">
+            <td>{{deliveryId}}</td>
+            <td>{{organizationName}}</td>
+            <td>{{supplierName}}</td>
+            <td>{{date}}</td>
+            <td><button type="submit">Добавить элементы поставки</button></td>
+            </form>
+            <td><button type="submit" id="deleteDelivery" value={{deliveryId}}>Удалить поставку</button></td>
+        </tr>
+
+{{/delivery}}

@@ -1,0 +1,19 @@
+<caption>Прайс-лист на заказы</caption>
+<tr>
+    <th>Тип заказа</th>
+    <th>Тип бумаги</th>
+    <th>Формат бумаги</th>
+    <th>Цена</th>
+    <th>Удалить</th>
+</tr>
+{{#order}}
+    <tr>
+        <td>{{orderType}}</td>
+        <td>{{paperType}}</td>
+        <td>{{format}}</td>
+        <td>{{price}}</td>
+        <td>
+            <button type="submit" id="deleteButton" value="{{orderId}}">Удалить</button>
+        </td>
+    </tr>
+{{/order}}

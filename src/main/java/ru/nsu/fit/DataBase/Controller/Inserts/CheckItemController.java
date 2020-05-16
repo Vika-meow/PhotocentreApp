@@ -62,6 +62,13 @@ public class CheckItemController {
         return "/insert/check/item/checkItem";
     }
 
+    @PostMapping("/insert/check/item/delete")
+    public String delete(@RequestParam int id,Map<String, Object> model){
+        itemRepo.deleteById(id);
+        putListOfAll(model);
+        return "/insert/check/item/checkItem";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         model.put("currentCheck", check);
 

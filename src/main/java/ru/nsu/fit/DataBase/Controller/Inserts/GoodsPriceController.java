@@ -37,6 +37,16 @@ public class GoodsPriceController {
         return "/insert/price/goods/priceGoods";
     }
 
+    @PostMapping("/insert/price/goods/delete")
+    public String delete(@RequestParam int goodsId, Map<String, Object> model){
+        GoodsPrice goodsPrice = goodsPriceRepo.findByGoodsId(goodsId);
+        goodsPriceRepo.delete(goodsPrice);
+
+        putListOfAll(model);
+
+        return "/insert/price/goods/tableGoods";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         Iterable<GoodsPrice> it = goodsPriceRepo.findAll();
         model.put("goods", it);

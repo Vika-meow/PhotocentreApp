@@ -35,6 +35,16 @@ public class OrderPriceController {
         return "/insert/price/order/priceOrder";
     }
 
+    @PostMapping("/price/order/delete")
+    public String delete(@RequestParam int orderId, Map<String, Object> model){
+        OrderPrice orderPrice = orderPriceRepo.findByOrderId(orderId);
+        orderPriceRepo.delete(orderPrice);
+
+        putListOfAll(model);
+
+        return "/insert/price/order/tableOrder";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         Iterable<OrderPrice> it = orderPriceRepo.findAll();
         model.put("order", it);

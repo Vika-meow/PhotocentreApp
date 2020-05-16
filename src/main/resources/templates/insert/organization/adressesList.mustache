@@ -1,7 +1,14 @@
 <table>
-    <tr><td>Адрес</td><td>Адрес филиала-родителя</td></tr>
+    <tr>
+        <th>Адрес</th>
+        <th>Адрес филиала-родителя</th>
+        <th>Удалить</th>
+    </tr>
     {{#organizationsShow}}
-        <tr><td><span>{{address}}</span></td>
-            <td><span>{{branchOfficeAdressString}}</span></td><tr>
+        <tr>
+            <td>{{address}}</td>
+            <td>{{branchOfficeAdressString}}</td>
+            <td><button type="submit" value="{{address}}" id="deleteAddress">Удалить</button></td>
+    <tr>
     {{/organizationsShow}}
 </table>

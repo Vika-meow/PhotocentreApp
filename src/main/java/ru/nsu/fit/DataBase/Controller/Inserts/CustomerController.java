@@ -33,6 +33,15 @@ public class CustomerController {
         return "/insert/customer/customer";
     }
 
+    @PostMapping("/insert/customer/delete")
+    public String delete(@RequestParam String name, Map<String, Object> model){
+        Customer customer = customerRepo.findByName(name);
+        customerRepo.delete(customer);
+
+        putListOfAll(model);
+        return "/insert/customer/customerTable";
+    }
+
     private void putListOfAll(Map<String, Object> model){
         Iterable<Customer> it = customerRepo.findAll();
         model.put("customers", it);

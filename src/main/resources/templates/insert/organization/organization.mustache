@@ -22,7 +22,7 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/static/listingAdresses.js"></script>
-
+<script type="text/javascript" src="/static/insert/organization/deleteOrganization.js"></script>
 <div>Выводить адреса:
     <select onchange="makeRequest(this.value)">
         <option value="/insert/organizationShowAll">Все Организации</option>
@@ -34,14 +34,16 @@
 <div id='printAdresses'>
     <table>
         <tr>
-            <td>Адрес</td>
-            <td>Адрес филиала-родителя</td>
+            <th>Адрес</th>
+            <th>Адрес филиала-родителя</th>
+            <th>Удалить</th>
         </tr>
         {{#organizationsShow}}
             <tr>
                 <td>{{address}}</td>
                 <td>{{branchOfficeAdressString}}</td>
-        <tr>
+                <td><button type="submit" value="{{address}}" id="deleteAddress">Удалить</button></td>
+            <tr>
         {{/organizationsShow}}
     </table>
 </div>

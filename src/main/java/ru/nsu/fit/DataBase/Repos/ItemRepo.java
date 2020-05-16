@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.util.List;
 
 public interface ItemRepo extends CrudRepository<Item, Integer> {
+    public void deleteById(int itemId);
+
     public List<Item> findByCheck(CheckEntity check);
 
     public List<Item> findByOrderIdIsNotNull();

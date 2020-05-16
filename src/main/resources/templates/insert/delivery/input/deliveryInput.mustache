@@ -1,5 +1,9 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="../../../../static/tableStyle.css"></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../../static/tableStyle.css">
+    <title>Photocentre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <a href="/insert/delivery">Back</a>
 <div>Current delivery</div>
@@ -31,6 +35,7 @@
         <th>Компания-производитель</th>
         <th>Модель</th>
         <th>Количество</th>
+        <th>Удалить</th>
     </tr>
     {{#deliveryInput}}
         <tr>
@@ -38,6 +43,10 @@
             <td>{{goodsCompany}}</td>
             <td>{{goodsModel}}</td>
             <td>{{count}}</td>
+            <form method="post" action="/insert/delivery/input/delete">
+                <input type="hidden" name="id" value="{{deliveryInputId}}"/>
+                <td><button type="submit">Удалить</button></td>
+            </form>
         </tr>
     {{/deliveryInput}}
 </table>

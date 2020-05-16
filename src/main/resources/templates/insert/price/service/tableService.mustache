@@ -1,0 +1,15 @@
+<caption>Прайс-лист на заказы</caption>
+<tr>
+    <th>Тип услуги</th>
+    <th>Цена</th>
+    <th>Удалить</th>
+</tr>
+{{#service}}
+    <tr>
+        <td>{{serviceType}}</td>
+        <td>{{price}}</td>
+        <td>
+            <button type="submit" id="deleteButton" value="{{serviceId}}">Удалить</button>
+        </td>
+    </tr>
+{{/service}}

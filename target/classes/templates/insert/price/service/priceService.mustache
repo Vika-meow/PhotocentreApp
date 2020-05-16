@@ -14,18 +14,36 @@
         <button type="submit">Добавить</button>
     </form>
 </div>
-<table>
+<table id="tableId">
     <caption>Прайс-лист на заказы</caption>
     <tr>
         <th>Тип услуги</th>
         <th>Цена</th>
+        <th>Удалить</th>
     </tr>
     {{#service}}
         <tr>
             <td>{{serviceType}}</td>
             <td>{{price}}</td>
+            <td>
+                <button type="submit" id="deleteButton" value="{{serviceId}}">Удалить</button>
+            </td>
         </tr>
     {{/service}}
 </table>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $(document).on("click", "#deleteButton", function() {
+        var id = $(this).attr('value');
+        let isBoss = confirm("Вы уверены, что хотите удалить этот заказ?");
+        if(isBoss) {
+            $.post('/price/service/delete', {
+                serviceId: id
+            }, function (html) {
+                jQuery('#tableId').html(html);
+            });
+        }
+    });
+</script>
 </body>
 </html>
