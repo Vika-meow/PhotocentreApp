@@ -23,12 +23,16 @@ public class OrderPriceController {
     }
 
     @PostMapping("/price/orderAdd")
-    public String add(@RequestParam String orderType, @RequestParam String paperType,
-                      @RequestParam String format, @RequestParam int price,
+    public String add(@RequestParam String orderType, @RequestParam(required = false) String paperType,
+                      @RequestParam(required = false) String format, @RequestParam int price,
                       Map<String, Object> model){
 
-        OrderPrice orderPrice = new OrderPrice(orderType, paperType, format, price);
-        orderPriceRepo.save(orderPrice);
+        if((paperType != null) && (format != null)) {
+            OrderPrice orderPrice = new OrderPrice(orderType, paperType, format, price);
+            orderPriceRepo.save(orderPrice);
+        } else {
+
+        }
 
         putListOfAll(model);
 

@@ -9,11 +9,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/Photocentre</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Test_2@localhost" uuid="f41bff04-35f6-404e-8fb3-55694b58caf4">
+    <data-source source="LOCAL" name="Test_1@localhost" uuid="45aea9da-4486-4100-9b4a-12f7273ff0f3">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/Test_2</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Test_1</jdbc-url>
     </data-source>
   </component>
 </project>

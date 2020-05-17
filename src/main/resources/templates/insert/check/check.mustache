@@ -3,10 +3,22 @@
     <link rel="stylesheet" type="text/css" href="../../../static/tableStyle.css">
     <title>Photocentre</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
 </head>
 <body>
 <a href="/insert">Back</a>
-<div></div>
+<div class="popup-window">
+    <p class="close">x</p>
+        <form id="customerForm" onsubmit="return false">
+            <input type="text" name="name" placeholder="Имя покупателя" id="customerName" required/>
+            <select name="discountCard" required>
+                <option selected disabled value=''>Наличие дисконтной карты</option>
+                <option value="0">Нет карты</option>
+                <option value="1">Есть карта</option>
+            </select>
+            <button type="submit">Добавить</button>
+        </form>
+</div>
 <div>
     <form method="post" action="/insert/check">
         <select name ="address" required placeholder="Адрес">
@@ -15,12 +27,18 @@
                 <option value="{{address}}">{{address}}</option>
             {{/organization}}
         </select>
-        <input type="text" name="customerName" required placeholder="Покупатель"/>
+        <select name="customerName" id="customerChoosen" required>
+            <option id="default" selected disabled value=''>Выбрать покупателя</option>
+            <option value="choose">Добавить покупателя</option>
+            {{#customer}}
+                <option value="{{name}}">{{name}}</option>
+            {{/customer}}
+        </select>
         <input type="date" name="date" required placeholder="Дата поставки"/>
-        <button type="submit">Добавить</button>
+        <button type="submit" onclick="closeWindow()">Добавить</button>
     </form>
 </div>
-
+<p class="open">Открыть всплывающее окно</p>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/static/insert/check/deleteAjax.js"></script>
 
@@ -52,5 +70,56 @@
 {{/check}}
 </table>
 </div>
+<div class="backpopup"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    //$("#customerChoosen").chosen();
+
+    function closeWindow() {
+        $('.popup-window').fadeOut();
+        $('.backpopup').fadeOut();
+        jQuery('.customerChoosen').html(html);
+    }
+
+    $(document).on("change", "#customerChoosen", function () {
+        var selected = $(this).val();
+        if(selected === 'choose') {
+            $('.popup-window').popup();
+        }
+    })
+    /* <option id="default" selected disabled value=''>Выбрать покупателя</option>
+            */
+    $.fn.popup = function() { 	//функция для открытия всплывающего окна:
+        this.css('position', 'absolute').fadeIn();	//задаем абсолютное позиционирование и эффект открытия
+        //махинации с положением сверху:учитывается высота самого блока, экрана и позиции на странице:
+        this.css('top', ($(window).height() - this.height()) / 2 + $(window).scrollTop() + 'px');
+        //слева задается отступ, учитывается ширина самого блока и половина ширины экрана
+        this.css('left', ($(window).width() - this.width()) / 2  + 'px');
+        //открываем тень с эффектом:
+        $('.backpopup').fadeIn();
+    }
+    $(document).ready(function(){	//при загрузке страницы:
+        $('.open').click(function(){	//событие клик на нашу ссылку
+            //$('.popup-window').popup();	//запускаем функцию на наш блок с формой
+        });
+        $('.backpopup,.close').click(function(){ //событие клик на тень и крестик - закрываем окно и тень:
+            $('.popup-window').fadeOut();
+            $('.backpopup').fadeOut();
+            $("#customerChoosen").val('');
+        });
+    });
+
+    $("#customerForm").on( "submit", function(){
+        var smth = $(this).serialize();
+        var val = document.getElementById('customerName').value;
+        $.post('/insert/check/customer', smth, function(html){
+            jQuery('#customerChoosen').html(html);
+            $('.popup-window').fadeOut();
+            $('.backpopup').fadeOut();
+            $("#customerChoosen").val(val);
+        });
+    });
+</script>
 </body>
 </html>

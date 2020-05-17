@@ -42,3 +42,16 @@ a:hover {
 head {
     background: #efd2f3;
 }
+
+button {
+    color: #fff; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: #b9a8bf; /* фон кнопки */
+    padding: .7em 1.5em; /* отступ от текста */
+    outline: none; /* убирать контур в Mozilla */
+    border-radius: 5px;
+}
+
+button:hover { background: #3f1b55; } /* при наведении курсора мышки */
+button:active { background: #180921; } /* при нажатии */

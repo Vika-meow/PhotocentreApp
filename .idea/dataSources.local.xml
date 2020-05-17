@@ -6,7 +6,7 @@
       <user-name>postgres</user-name>
       <schema-mapping />
     </data-source>
-    <data-source name="Test_2@localhost" uuid="f41bff04-35f6-404e-8fb3-55694b58caf4">
+    <data-source name="Test_1@localhost" uuid="45aea9da-4486-4100-9b4a-12f7273ff0f3">
       <database-info product="PostgreSQL" version="10.12 (Ubuntu 10.12-2.pgdg18.04+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="10.12" exact-driver-version="42.2">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

@@ -44,6 +44,17 @@ public class CheckController {
         return "/insert/check/check";
     }
 
+    @PostMapping("/insert/check/customer")
+    public String add(@RequestParam String name, @RequestParam boolean discountCard,
+                      Map<String, Object> model){
+
+        Customer customer = new Customer(name,discountCard);
+        customerRepo.save(customer);
+
+        putListOfCustomers(model);
+        return "/insert/check/customers";
+    }
+
     @PostMapping("/insert/check/delete")
     public String delete(@RequestParam int checkId, Map<String, Object> model){
         checkRepo.deleteById(checkId);
@@ -56,6 +67,7 @@ public class CheckController {
     private void putListOfAll(Map<String, Object> model) {
         putListOfOrganizations(model);
         putListOfCheck(model);
+        putListOfCustomers(model);
     }
 
     private void putListOfOrganizations(Map<String, Object> model){
@@ -66,6 +78,11 @@ public class CheckController {
     private void putListOfCheck(Map<String, Object> model){
         Iterable<CheckEntity> it = checkRepo.findAll();
         model.put("check", it);
+    }
+
+    private void putListOfCustomers(Map<String, Object> model){
+        Iterable<Customer> it = customerRepo.findAll();
+        model.put("customer", it);
     }
 
 }

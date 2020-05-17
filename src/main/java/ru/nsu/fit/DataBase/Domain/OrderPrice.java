@@ -22,6 +22,11 @@ public class OrderPrice {
     public OrderPrice() {
     }
 
+    public OrderPrice(String orderType, int price){
+        this.orderType = orderType;
+        this.price = price;
+    }
+
     public OrderPrice(String orderType, String paperType,
                       String format, int price){
         this.orderType = orderType;
@@ -47,7 +52,8 @@ public class OrderPrice {
     }
 
     public String getPaperType() {
-        return paperType;
+        return paperType != null
+                ? paperType : "none";
     }
 
     public void setPaperType(String paperType) {
@@ -55,7 +61,8 @@ public class OrderPrice {
     }
 
     public String getFormat() {
-        return format;
+        return format != null
+                ? format : "none";
     }
 
     public void setFormat(String format) {

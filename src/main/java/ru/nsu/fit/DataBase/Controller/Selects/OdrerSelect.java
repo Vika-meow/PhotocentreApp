@@ -45,6 +45,9 @@ public class OdrerSelect {
         model.put("currentDate", date);
         model.put("fullPrice", countSum(it));
 
+        Iterable<OrderPrice> it2 = orderPriceRepo.findAll();
+        model.put("orderList", it2);
+
         return "/select/orders/selectOrder";
     }
 
