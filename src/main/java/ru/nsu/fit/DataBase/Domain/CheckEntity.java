@@ -6,7 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
-//src/main/java/ru/nsu/fit/DataBase/application.properties
+
 @Entity
 public class CheckEntity {
     @Id
