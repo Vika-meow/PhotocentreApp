@@ -65,4 +65,7 @@ public interface ItemRepo extends CrudRepository<Item, Integer> {
     public List<Item> findByOrderId_OrderIdInAndCheck_Organization_AddressIn(List<Integer> ordersId, List<String> addresses);
     public List<Item> findByOrderId_OrderIdInAndCheck_Organization_AddressIn(List<Integer> ordersId, List<String> addresses, Sort sort);
 
+
+    public List<Item> findByOrderId_OrderTypeIsAndCheck_DateBetweenAndCheck_Organization_AddressIn(String orderType, Date start, Date end, List<String> addresses);
+    public List<Item> findByOrderId_OrderTypeIs(String orderType);
 }

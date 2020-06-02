@@ -1,0 +1,55 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+</head>
+<body>
+<a href="/">Back to main page</a>
+<div>Показать заказы :</div>
+<div class="form-content">
+    <form method="post" action="/select/photoCount">
+        <select name="orderType" required>
+            <option value="" selected disabled>Выберите тип заказа</option>
+            <option value="Print photo">Print photo</option>
+            <option value="Develop a film">Develop a film</option>
+        </select>
+        <select name="orgs" multiple="multiple" required>
+            {{#organizations}}
+                <option value="{{address}}">{{address}}</option>
+            {{/organizations}}
+        </select>
+        <span>после даты</span>
+        <input type="date" name="afterDate" value="2020-01-01" placeholder="После даты" required/>
+        <span>до даты</span>
+        <input type="date" name="beforeDate" value="{{currentDate}}" placeholder="До даты" required/>
+        <button type="submit">Найти</button>
+        <button type="reset">Очистить</button>
+    </form>
+</div>
+</div>
+<div>Photo order list</div>
+<div>
+    <span>Количество: {{photoCount}}</span>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Order Type</th>
+            <th>Paper Type</th>
+            <th>Format</th>
+            <th>Address</th>
+            <th>Date</th>
+        </tr>
+        {{#items}}
+            <tr>
+                <td>{{customerName}}</td>
+                <td>{{orderType}}</td>
+                <td>{{orderPaperType}}</td>
+                <td>{{orderFormat}}</td>
+                <td>{{adress}}</td>
+                <td>{{date}}</td>
+            </tr>
+        {{/items}}
+    </table>
+</div>
+</body>
+</html>
