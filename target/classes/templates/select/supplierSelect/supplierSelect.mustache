@@ -1,0 +1,49 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+</head>
+<body>
+<a href="/">Back to main page</a>
+<div>Показать поставщиков :</div>
+<div class="form-content">
+    <form method="post" action="/select/query7">
+        <p>Сделавших поставки в период: </p>
+        <span>от</span>
+        <input type="date" name="afterDate" value="2020-01-01" placeholder="После даты" required/>
+        <span>до</span>
+        <input type="date" name="beforeDate" value="{{currentDate}}" placeholder="До даты" required/>
+        <div>
+            <span>Объема не меньше </span>
+            <input type="number" name="volume" value="0", min="0" required/>
+        </div>
+        <div>
+            <span>Поставивших товары: </span>
+            <select name="goodsList" multiple>
+                {{#goodsPrice}}
+                    <option value={{goodsId}}>{{nameOfGoods}} {{company}} {{goodsModel}}</option>
+                {{/goodsPrice}}
+            </select>
+        </div>
+        <button type="submit">Найти</button>
+        <button type="reset">Очистить</button>
+    </form>
+</div>
+</div>
+<div>Photo order list</div>
+<div>
+    <table>
+        <tr>
+            <th>Supplier Id</th>
+            <th>Supplier Name</th>
+        </tr>
+        {{#suppliers}}
+            <tr>
+                <td>{{supplierId}}</td>
+                <td>{{organization}}</td>
+            </tr>
+        {{/suppliers}}
+    </table>
+</div>
+</body>
+</html>
