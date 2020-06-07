@@ -13,6 +13,17 @@ public interface SupplierRepo extends CrudRepository<Supplier, Integer> {
     public Supplier findBySupplierId(int supplierId);
     public List<Supplier> findBySupplierIdIn(List<Integer> ids);
 
+    @Query(value = "select supplier.supplier_id from supplier " +
+            " natural join delivery " +
+            " natural join delivery_input " +
+            "where date between  :afterDate AND :beforeDate " +
+            "group by supplier.supplier_id " +
+            "having sum(count) >= :volume",
+            nativeQuery = true
+    )
+    public List<Integer> findByDateBetweenAndVolume(@Param("afterDate")Date afterDate,
+                                                                @Param("beforeDate") Date beforeDate,
+                                                                @Param("volume") int volume);
 
     @Query(value = "select supplier.supplier_id from supplier " +
             " natural join delivery " +
@@ -23,7 +34,7 @@ public interface SupplierRepo extends CrudRepository<Supplier, Integer> {
             "having sum(count) >= :volume",
     nativeQuery = true
     )
-    public List<Integer> findByDateBetweenAndVolume(@Param("afterDate")Date afterDate,
+    public List<Integer> findByDateBetweenAndVolumeAndGoodsList(@Param("afterDate")Date afterDate,
                                       @Param("beforeDate") Date beforeDate,
                                            @Param("volume") int volume,
                                                     @Param("goodsList") List<Integer> goodsList);

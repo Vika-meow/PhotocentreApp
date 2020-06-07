@@ -1,0 +1,42 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+</head>
+<body>
+<a href="/">Back to main page</a>
+<div>Показать фототовары и фирмы, их производящие, пользующиеся наибольшим спросом :</div>
+<div class="form-content">
+    <form method="post" action="/select/query10">
+        <span>Показать не больше: </span>
+        <input type="number" name="limitCount" value="10", min="1" required/>
+        <span>Показать информацию по филиалам: </span>
+        <select name="orgs" multiple="multiple">
+            {{#organizations}}
+                <option value="{{address}}">{{address}}</option>
+            {{/organizations}}
+        </select>
+        <button type="submit">Найти</button>
+        <button type="reset">Очистить</button>
+    </form>
+</div>
+</div>
+<div>Photographic goods </div>
+<div>
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Name of Goods</th>
+            <th>Count</th>
+        </tr>
+        {{#list}}
+            <tr>
+                <td>{{company}}</td>
+                <td>{{nameOfGoods}}</td>
+                <td>{{count}}</td>
+            </tr>
+        {{/list}}
+    </table>
+</div>
+</body>
+</html>

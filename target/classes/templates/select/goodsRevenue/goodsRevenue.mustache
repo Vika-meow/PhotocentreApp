@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+</head>
+<body>
+<a href="/">Back to main page</a>
+<div>Получить сумму выручки :</div>
+<div class="form-content">
+    <form method="post" action="/select/query9">
+        <select name="orgs" multiple="multiple" required>
+            {{#organizations}}
+                <option value="{{address}}">{{address}}</option>
+            {{/organizations}}
+        </select>
+        <span>Проданных в период от</span>
+        <input type="date" name="afterDate" value="2020-01-01" placeholder="После даты" required/>
+        <span>до </span>
+        <input type="date" name="beforeDate" value="{{currentDate}}" placeholder="До даты" required/>
+        <button type="submit">Найти</button>
+        <button type="reset">Очистить</button>
+    </form>
+</div>
+</div>
+<div>Photo order list</div>
+<div>
+    <span>Выручка: {{revenue}}</span>
+    <table>
+        <tr>
+            <th>Name of Goods</th>
+            <th>Company</th>
+            <th>Goods Model</th>
+            <th>Buy price</th>
+            <th>Sell price</th>
+            <th>Count</th>
+        </tr>
+        {{#items}}
+            <tr>
+                <td>{{nameOfGoods}}</td>
+                <td>{{company}}</td>
+                <td>{{goodsModel}}</td>
+                <td>{{buyPrice}}</td>
+                <td>{{sellPrice}}</td>
+                <td>{{count}}</td>
+            </tr>
+        {{/items}}
+    </table>
+</div>
+</body>
+</html>

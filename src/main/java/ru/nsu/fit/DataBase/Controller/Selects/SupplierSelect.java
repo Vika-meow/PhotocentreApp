@@ -13,7 +13,7 @@ import ru.nsu.fit.DataBase.Repos.SupplierRepo;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
-
+/*query7 and qyery8*/
 @Controller
 public class SupplierSelect {
     @Autowired
@@ -40,13 +40,19 @@ public class SupplierSelect {
     public String select(@RequestParam Date afterDate,
                          @RequestParam Date beforeDate,
                          @RequestParam int volume,
-                         @RequestParam List<Integer> goodsList,
+                         @RequestParam(required = false) List<Integer> goodsList,
                          Map<String, Object> model){
-        List<Integer> supplierIds =  supplierRepo.findByDateBetweenAndVolume
-                (afterDate, beforeDate, volume, goodsList);
-        List<Supplier> suppliers = supplierRepo.findBySupplierIdIn(supplierIds);
-        model.put("suppliers", suppliers);
-
+        if(goodsList == null){
+            List<Integer> supplierIds = supplierRepo.findByDateBetweenAndVolume
+                    (afterDate, beforeDate, volume);
+            List<Supplier> suppliers = supplierRepo.findBySupplierIdIn(supplierIds);
+            model.put("suppliers", suppliers);
+        } else {
+            List<Integer> supplierIds = supplierRepo.findByDateBetweenAndVolumeAndGoodsList
+                    (afterDate, beforeDate, volume, goodsList);
+            List<Supplier> suppliers = supplierRepo.findBySupplierIdIn(supplierIds);
+            model.put("suppliers", suppliers);
+        }
         putInfo(model);
 
         return "/select/supplierSelect/supplierSelect";

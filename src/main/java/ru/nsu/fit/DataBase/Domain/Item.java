@@ -180,4 +180,24 @@ public class Item {
         return check != null
                 ? check.getDate() : new Date(System.currentTimeMillis());
     }
+
+    public String getNameOfGoods(){
+        return goodsId.getNameOfGoods();
+    }
+
+    public String getCompany(){
+        return  goodsId.getCompany();
+    }
+
+    public String getGoodsModel(){
+        return goodsId.getGoodsModel();
+    }
+
+    public int getBuyPrice(){
+        return goodsId.getBuyPrice();
+    }
+
+    public int getSellPrice(){
+        return goodsId.getSellPrice();
+    }
 }

@@ -1,7 +1,9 @@
 package ru.nsu.fit.DataBase.Repos;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import ru.nsu.fit.DataBase.Domain.CheckEntity;
 import ru.nsu.fit.DataBase.Domain.Item;
 
@@ -68,4 +70,29 @@ public interface ItemRepo extends CrudRepository<Item, Integer> {
 
     public List<Item> findByOrderId_OrderTypeIsAndCheck_DateBetweenAndCheck_Organization_AddressIn(String orderType, Date start, Date end, List<String> addresses);
     public List<Item> findByOrderId_OrderTypeIs(String orderType);
+
+    //query9
+    public List<Item> findByGoodsIdNotNullAndCheck_DateBetweenAndCheck_Organization_AddressIn(Date start, Date end, List<String> addresses);
+    public List<Item> findByGoodsIdNotNull();
+
+    //query11
+    @Query(value = "select name_of_goods, company, goods_model, buy_price, sell_price, sum(count) from item " +
+            "natural join goods_price " +
+            "natural join check_entity " +
+            "natural join organization " +
+            "where date between :start and :end " +
+            "and address in :orgs " +
+            "group by name_of_goods, company, goods_model, buy_price, sell_price " +
+            "order by sum(count) desc",
+    nativeQuery = true)
+    public List<Object[]> findByDateAndAddress(@Param("start") Date start,
+                                               @Param("end") Date end,
+                                               @Param("orgs") List<String> orgs);
+
+    @Query(value = "select name_of_goods, company, goods_model, buy_price, sell_price, sum(count) from item " +
+            "natural join goods_price " +
+            "group by name_of_goods, company, goods_model, buy_price, sell_price " +
+            "order by sum(count) desc",
+            nativeQuery = true)
+    public List<Object[]> findByGoods();
 }

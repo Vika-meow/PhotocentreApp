@@ -1,0 +1,38 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+</head>
+<body>
+<a href="/">Back to main page</a>
+<div>Показать покупателей :</div>
+<div class="form-content">
+    <form method="post" action="/select/query8">
+        <select name="discountCard" required>
+            <option value=0 selected>Без дисконтной карты</option>
+            <option value=1>С дисконтной картой</option>
+        </select>
+        <div>
+            <span>Объем покупок, которых больше чем  </span>
+            <input type="number" name="volume" value="0", min="0" required/>
+        </div>
+        <button type="submit">Найти</button>
+        <button type="reset">Очистить</button>
+    </form>
+</div>
+</div>
+<div>Photo order list</div>
+<div>
+    <table>
+        <tr>
+            <th>Сustomer Name</th>
+        </tr>
+        {{#customers}}
+            <tr>
+                <td>{{name}}</td>
+            </tr>
+        {{/customers}}
+    </table>
+</div>
+</body>
+</html>
