@@ -9,19 +9,19 @@
 <div></div>
 <div>
     <form method="post" action="/insert/delivery">
-        <select name ="address" placeholder="Адрес">
-            <option value="-1">Адрес доставки</option>
+        <select name ="address" placeholder="Адрес" required>
+            <option value="" selected disabled>Адрес доставки</option>
             {{#organization}}
                 <option value="{{address}}">{{address}}</option>
             {{/organization}}
         </select>
-        <select name ="supplierId" placeholder="Поставщик">
-            <option value="-1">Поставщик</option>
+        <select name ="supplierId" placeholder="Поставщик" required>
+            <option value="" disabled selected>Поставщик</option>
             {{#supplier}}
                 <option value="{{supplierId}}">{{organization}}</option>
             {{/supplier}}
         </select>
-        <input type="date" name="date" placeholder="Дата поставки"/>
+        <input type="date" name="date" placeholder="Дата поставки" required/>
         <button type="submit">Добавить</button>
     </form>
 </div>

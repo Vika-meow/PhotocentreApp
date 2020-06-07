@@ -25,6 +25,13 @@ public class GoodsPriceMore {
         this.count = count;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public String getNameOfGoods() {
         return nameOfGoods;

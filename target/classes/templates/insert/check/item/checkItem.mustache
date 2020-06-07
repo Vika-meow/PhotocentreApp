@@ -26,7 +26,7 @@
             <option value={{goodsId}}>{{nameOfGoods}} {{company}} {{goodsModel}}</option>
         {{/goods}}
     </select>
-    <input type="number" name="count" placeholder="Количество" required/>
+    <input type="number" name="count" placeholder="Количество" required min="1"/>
     <button type="submit">Добавить</button>
 </form>
 
@@ -38,7 +38,7 @@
             <option value={{serviceId}}>{{serviceType}}</option>
         {{/services}}
     </select>
-    <input type="number" required name="count" placeholder="Количество"/>
+    <input type="number" required name="count" placeholder="Количество" min="1"/>
     <button type="submit">Добавить</button>
 </form>
 
@@ -50,7 +50,7 @@
             <option value={{orderId}}>{{orderType}} {{paperType}} {{format}}</option>
         {{/orders}}
     </select>
-    <input type="number" name="count" required placeholder="Количество"/>
+    <input type="number" name="count" required placeholder="Количество" min="1"/>
     <button type="submit">Добавить</button>
 </form>
 

@@ -73,7 +73,7 @@ public class GoodsRevenue {
 
         int revenue = 0;
         for(GoodsPriceMore it : items){
-            revenue = it.getSellPrice() - it.getBuyPrice();
+            revenue = (it.getSellPrice() - it.getBuyPrice())*it.getCount();
         }
         model.put("revenue", revenue);
 
