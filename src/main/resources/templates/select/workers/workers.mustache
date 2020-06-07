@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Photocentre</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/myStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+</head>
+<body>
+<a href="/">Back to main page</a>
+<form method="post" action="/select/workers">
+    <p>Показать только определенного профиля</p>
+    <select name="profile" required>
+        <option value="" selected disabled>Выбрать профиль</option>
+        <option value="Photographer">Photographer</option>
+        <option value="Seller">Seller</option>
+        <option value="Manager">Manager</option>
+    </select>
+    <button type="submit">Найти!</button>
+</form>
+
+<div>Показать количество рабочих мест :</div>
+</div>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Profile</th>
+            <th>Address</th>
+            <th>Count</th>
+        </tr>
+        {{#workers}}
+            <tr>
+                <td>{{profile}}</td>
+                <td>{{address}}</td>
+                <td>{{count}}</td>
+            </tr>
+        {{/workers}}
+    </table>
+</div>
+</body>
+</html>
