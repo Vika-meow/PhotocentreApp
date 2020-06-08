@@ -48,6 +48,8 @@ public class OdrerSelect {
         Iterable<OrderPrice> it2 = orderPriceRepo.findAll();
         model.put("orderList", it2);
 
+        model.put("organizations", organizationRepo.findAll());
+
         return "/select/orders/selectOrder";
     }
 
@@ -133,6 +135,7 @@ public class OdrerSelect {
 
         model.put("orders", it);
         model.put("fullPrice", countSum(it));
+        model.put("organizations", organizationRepo.findAll());
         return "/select/orders/selectOrder";
     }
 

@@ -19,7 +19,12 @@
                     <option value="filials">Только Филиалы</option>
                     <option value="kiosks">Только Киоски</option>
                 </select>
-                <button type="button" id = "organizationsButton">Добавить ограничение по организациям</button>
+
+                <select name="orgs" id="putOrganizationsSelect" multiple="multiple">
+                    {{#organizations}}
+                        <option value="{{address}}">{{address}}</option>
+                    {{/organizations}}
+                </select>
             </div>
             <br>
             <div  id="addDates">

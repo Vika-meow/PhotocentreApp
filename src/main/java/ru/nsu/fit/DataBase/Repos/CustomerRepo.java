@@ -15,7 +15,7 @@ public interface CustomerRepo extends CrudRepository<Customer, String> {
     @Query(value="select name from customer " +
             "natural join check_entity " +
             "natural join item " +
-            "natural join goods_price " +
+            "natural join order_price " +
             "where discount_card = :discountCard " +
             "group by name " +
             "having sum(count) >= :volume ",
